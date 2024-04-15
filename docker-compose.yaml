@@ -1,6 +1,10 @@
 volumes:
+    postgres-data:
+        external: true
     database_volume:
         name: database_volume
+    pg-admin:
+        external: true
 
 services:
     db:
@@ -24,7 +28,7 @@ services:
             dockerfile: Dockerfile.dev
         ports:
             - 8000:8000
-        user: "1000:1000" # on macOS and Linux, replace this with your real user id and group id
+        user: "1000:1000"
         volumes:
             - ./api:/app
 
@@ -32,7 +36,7 @@ services:
         image: node:lts-bullseye
         command: /bin/bash run.sh
         working_dir: /app
-        user: "1000:1000" # on macOS and Linux, replace this with your real user id and group id
+        user: "1000:1000"
         volumes:
             - ./ghi:/app
         environment:
@@ -40,3 +44,14 @@ services:
             BASE_URL: http://localhost:5173
         ports:
             - "5173:5173"
+
+    pg-admin:
+        image: dpage/pgadmin4
+        volumes:
+            - pg-admin:/var/lib/pgadmin
+        ports:
+            - 8082:80
+        environment:
+            PGADMIN_DEFAULT_EMAIL: tickethound@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: tickethound
+            PGADMIN_DISABLE_POSTFTX: 1
