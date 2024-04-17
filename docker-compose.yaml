@@ -2,6 +2,7 @@ volumes:
     postgres-data:
         external: true
     database_volume:
+        external: true
         name: database_volume
     pg-admin:
         external: true

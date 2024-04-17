@@ -12,7 +12,7 @@ steps = [
             location VARCHAR(50) NOT NULL,
             record VARCHAR(8) NOT NULL,
             standing VARCHAR(50) NOT NULL
-            );
+        );
 
 
 
