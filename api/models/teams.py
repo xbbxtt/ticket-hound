@@ -7,7 +7,6 @@ class TeamOut(BaseModel):
     """
     Represents the data needed to create an instance of teams
     """
-    id: int
     team_name: str
     full_name: str
     color: str
@@ -19,7 +18,7 @@ class TeamOut(BaseModel):
 
 class ListTeamOut(BaseModel):
     """
-    Represents the data that is shown in the list of teams 
+    Represents the data that is shown in the list of teams
     """
     id: int
     full_name: str
