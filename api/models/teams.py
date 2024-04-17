@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+class Error (BaseModel):
+    message: str
 
 class TeamOut(BaseModel):
     """
@@ -16,6 +18,9 @@ class TeamOut(BaseModel):
     standing: str
 
 class ListTeamOut(BaseModel):
+    """
+    Represents the data that is shown in the list of teams 
+    """
     id: int
     full_name: str
     logo: str

@@ -1,7 +1,7 @@
 import os
 import psycopg
 import requests
-from pyscopg_pool import ConnectionPool
+from psycopg_pool import ConnectionPool
 from models.teams import TeamOut, ListTeamOut
 from utils.exceptions import TeamDatabaseException
 
@@ -22,28 +22,31 @@ class TeamQueries:
 
     def get_list_teams(self):
         # Get the list of teams from ESPN API
-
-        response = requests.get(
-            "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams"
-        )
-
-        json_data = response.json()
-        result = []
-
-        for team in json_data["sports"][0]["leagues"][0]["teams"]:
-            id = team["team"]["id"]
-            full_name = team["team"]["displayName"]
-            logo = team["team"]["logos"][0]["href"]
-
-            result.append(
-                ListTeamOut(
-                    id=id,
-                    full_name=full_name,
-                    logo=logo,
-                )
+        try:
+            response = requests.get(
+                "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams"
             )
 
-        return result
+            json_data = response.json()
+            result = []
+
+            for team in json_data["sports"][0]["leagues"][0]["teams"]:
+                id = team["team"]["id"]
+                full_name = team["team"]["displayName"]
+                logo = team["team"]["logos"][0]["href"]
+
+                result.append(
+                    ListTeamOut(
+                        id=id,
+                        full_name=full_name,
+                        logo=logo,
+                    )
+                )
+
+            return result
+
+        except Exception as e:
+            return {"message": "Could not load teams"}
 
     def get_team_details(self, id):
         # Get the details for a specific team from the ESPN API
