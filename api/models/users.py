@@ -1,6 +1,7 @@
 """
 Pydantic Models for Users.
 """
+from datetime import datetime
 from pydantic import BaseModel
 
 
@@ -10,7 +11,13 @@ class UserRequest(BaseModel):
     """
 
     username: str
+    first_name: str
+    last_name: str
+    address: str
+    birthday: datetime
     password: str
+    favorite_team_id: int
+
 
 
 class UserResponse(BaseModel):
@@ -20,6 +27,10 @@ class UserResponse(BaseModel):
 
     id: int
     username: str
+    first_name: str
+    last_name: str
+    birthday: datetime
+    favorite_team_id: int
 
 
 class UserWithPw(BaseModel):
@@ -29,4 +40,9 @@ class UserWithPw(BaseModel):
 
     id: int
     username: str
+    first_name: str
+    last_name: str
+    address: str
+    birthday: datetime
     password: str
+    favorite_team_id: int
