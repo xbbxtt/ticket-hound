@@ -6,7 +6,7 @@ import psycopg
 from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
 from typing import Optional
-from models.users import UserWithPw
+from models.users import UserRequest, UserWithPw
 from utils.exceptions import UserDatabaseException
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -79,7 +79,11 @@ class UserQueries:
 
         return user
 
-    def create_user(self, username: str, hashed_password: str) -> UserWithPw:
+    def create_user(
+            self,
+            user_new: UserRequest,
+            hashed_password: str,
+            ) -> UserWithPw:
         """
         Creates a new user in the database
 
@@ -92,24 +96,34 @@ class UserQueries:
                         """
                         INSERT INTO users (
                             username,
-                            password
+                            password,
+                            first_name,
+                            last_name,
+                            address,
+                            birthday,
+                            favorite_team_id
                         ) VALUES (
-                            %s, %s
+                            %s, %s, %s, %s, %s, %s, %s
                         )
                         RETURNING *;
                         """,
                         [
-                            username,
+                            user_new.username,
                             hashed_password,
+                            user_new.first_name,
+                            user_new.last_name,
+                            user_new.address,
+                            user_new.birthday,
+                            user_new.favorite_team_id
                         ],
                     )
                     user = cur.fetchone()
                     if not user:
                         raise UserDatabaseException(
-                            f"Could not create user with username {username}"
+                            f"Could not create user with username {user_new.username}"
                         )
         except psycopg.Error:
             raise UserDatabaseException(
-                f"Could not create user with username {username}"
+                f"Could not create user with username {user_new.username}"
             )
         return user
