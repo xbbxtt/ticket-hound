@@ -19,6 +19,13 @@ class UserRequest(BaseModel):
     favorite_team_id: int
 
 
+class UserRequestIn(BaseModel):
+    """
+    Represents the parameters needed to let a user sign in
+    """
+    username: str
+    password: str
+
 
 class UserResponse(BaseModel):
     """
@@ -31,6 +38,15 @@ class UserResponse(BaseModel):
     last_name: str
     birthday: datetime
     favorite_team_id: int
+
+
+class UserResponseOut(BaseModel):
+    """
+    Represents a user's id and username which is returned
+    when they sign in.
+    """
+    id: int
+    username: str
 
 
 class UserWithPw(BaseModel):
