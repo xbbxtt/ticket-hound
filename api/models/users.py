@@ -1,6 +1,7 @@
 """
 Pydantic Models for Users.
 """
+
 from datetime import datetime
 from pydantic import BaseModel
 
@@ -23,6 +24,7 @@ class UserRequestIn(BaseModel):
     """
     Represents the parameters needed to let a user sign in
     """
+
     username: str
     password: str
 
@@ -45,6 +47,7 @@ class UserResponseOut(BaseModel):
     Represents a user's id and username which is returned
     when they sign in.
     """
+
     id: int
     username: str
 

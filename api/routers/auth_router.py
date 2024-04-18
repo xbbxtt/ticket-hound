@@ -1,6 +1,7 @@
 """
 User Authentication API Router
 """
+
 from fastapi import (
     Depends,
     Request,
@@ -18,7 +19,7 @@ from models.users import (
     UserRequest,
     UserResponse,
     UserRequestIn,
-    UserResponseOut
+    UserResponseOut,
 )
 
 from utils.authentication import (

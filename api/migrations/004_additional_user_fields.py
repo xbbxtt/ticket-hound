@@ -14,6 +14,6 @@ steps = [
         """
         DROP COLUMN first_name, last_name, address, birthday,
         favorite_team_id;
-        """
+        """,
     ],
 ]

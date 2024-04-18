@@ -1,6 +1,7 @@
 """
 Database Queries for Users
 """
+
 import os
 import psycopg
 from psycopg_pool import ConnectionPool
@@ -80,10 +81,10 @@ class UserQueries:
         return user
 
     def create_user(
-            self,
-            user_new: UserRequest,
-            hashed_password: str,
-            ) -> UserWithPw:
+        self,
+        user_new: UserRequest,
+        hashed_password: str,
+    ) -> UserWithPw:
         """
         Creates a new user in the database
 
@@ -114,7 +115,7 @@ class UserQueries:
                             user_new.last_name,
                             user_new.address,
                             user_new.birthday,
-                            user_new.favorite_team_id
+                            user_new.favorite_team_id,
                         ],
                     )
                     user = cur.fetchone()
