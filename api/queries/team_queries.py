@@ -1,6 +1,4 @@
-import os
 import requests
-from psycopg_pool import ConnectionPool
 from models.teams import TeamOut, ListTeamOut
 
 
@@ -37,7 +35,7 @@ class TeamQueries:
 
             return result
 
-        except Exception as e:
+        except Exception:
             return {"message": "Could not load teams"}
 
     def get_team_details(self, id):

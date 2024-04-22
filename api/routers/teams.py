@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Response
-from queries.team_queries import TeamOut, ListTeamOut, TeamQueries
+from queries.team_queries import TeamQueries
 from models.teams import TeamOut, ListTeamOut, Error
 from typing import List, Union
 
@@ -21,4 +21,3 @@ def get_team_details(
     response = repo.get_team_details(id)
     print(response)
     return response
-
