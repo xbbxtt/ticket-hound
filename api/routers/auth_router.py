@@ -177,3 +177,13 @@ def edit_user(
     return repo.edit_user(old_user.id, user)
 
 
+@router.delete("/user/delete")
+def delete_user(
+    repo: UserQueries = Depends(),
+    user: UserQueries = Depends(try_get_jwt_user_data)
+):
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"
+        )
+    return repo.delete_user(user.id)

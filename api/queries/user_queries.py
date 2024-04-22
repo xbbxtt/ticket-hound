@@ -165,3 +165,21 @@ class UserQueries:
             raise UserDatabaseException(
                 f"Could not edit user with username {user.username}"
             )
+
+    def delete_user(self, id: int) -> bool:
+        try:
+            #connect to database
+            with pool.connection() as conn:
+                #get a cursor(something to run SQL with)
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM users
+                        WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception as e:
+            print (e, "smh")
+            return False
