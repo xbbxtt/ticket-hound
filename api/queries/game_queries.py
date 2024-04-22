@@ -1,5 +1,5 @@
 import requests
-from models.games import GameOut
+from models.games import DetailOut, GameOut
 
 class GameQueries:
     """
@@ -69,6 +69,32 @@ class GameQueries:
                                     location=location
                                 ) )
             return ballgames
+
+        except Exception as e:
+            print(e)
+            return e
+
+    def get_game_details(self, id):
+        try:
+            response = requests.get(
+                f"http://statsapi.mlb.com/api/v1/schedule/games/?gamePk={id}"
+            )
+
+            data = response.json()
+
+            data = data["dates"][0]["games"][0]
+            game_date = data["gameDate"]
+            away_team = data["teams"]["away"]["team"]["name"]
+            home_team = data["teams"]["home"]["team"]["name"]
+            location = data["venue"]["name"]
+
+            return DetailOut(
+                            id=id,
+                            game_date=game_date,
+                            away_team=away_team,
+                            home_team=home_team,
+                            location=location)
+
 
         except Exception as e:
             print(e)

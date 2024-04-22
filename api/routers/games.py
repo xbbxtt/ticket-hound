@@ -15,3 +15,11 @@ def get_list_of_games(
     repo: GameQueries = Depends(),
 ):
     return repo.get_list_games(start_date, end_date, away_team, home_team)
+
+
+@router.get("/api/games/{id}")
+def get_details_of_games(
+    id: int,
+    repo: GameQueries = Depends()
+):
+    return repo.get_game_details(id)

@@ -25,6 +25,17 @@ class GameOut(BaseModel):
     location: str
 
 
+class DetailOut(BaseModel):
+    """
+    Represents the data that will be returned from the MLB API game details
+    """
+    id: int
+    home_team: str
+    away_team: str
+    location: str
+    game_date: datetime
+
+
 
 
 
