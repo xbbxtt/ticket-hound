@@ -21,3 +21,4 @@ def get_team_details(
     response = repo.get_team_details(id)
     print(response)
     return response
+

@@ -3,12 +3,6 @@ import requests
 from psycopg_pool import ConnectionPool
 from models.teams import TeamOut, ListTeamOut
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
-if not DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is not set")
-
-pool = ConnectionPool(DATABASE_URL)
-
 
 class TeamQueries:
     """
