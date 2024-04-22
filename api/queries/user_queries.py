@@ -128,3 +128,40 @@ class UserQueries:
                 f"Could not create user with username {user_new.username}"
             )
         return user
+
+
+    def edit_user(self, id: int, user:UserRequest) -> UserWithPw:
+        """
+        Allows edits of user profile
+        """
+        try:
+            with pool.connection() as conn:
+                with conn.cursor(row_factory=class_row(UserWithPw)) as cur:
+                    cur.execute(
+                        """
+                        UPDATE users
+                        SET username = %s,
+                        first_name = %s,
+                        last_name = %s,
+                        address = %s,
+                        birthday = %s,
+                        password = %s,
+                        favorite_team_id = %s
+                        WHERE id = %s
+                        """,
+                        [
+                            user.username,
+                            user.first_name,
+                            user.last_name,
+                            user.address,
+                            user.birthday,
+                            user.password,
+                            user.favorite_team_id,
+                            id
+                        ]
+                    )
+                    return UserRequest(id=id, **user.dict())
+        except psycopg.Error:
+            raise UserDatabaseException(
+                f"Could not edit user with username {user.username}"
+            )

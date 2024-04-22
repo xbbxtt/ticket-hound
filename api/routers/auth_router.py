@@ -161,3 +161,19 @@ async def signout(
     # All that has to happen is the cookie header must come back
     # Which causes the browser to delete the cookie
     return
+
+
+@router.put("/user/edit")
+def edit_user(
+    user: UserRequest,
+    repo: UserQueries = Depends(),
+    old_user: UserQueries = Depends(try_get_jwt_user_data)
+) -> UserRequest:
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"
+        )
+    return repo.edit_user(old_user.id, user)
+
+
