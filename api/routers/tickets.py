@@ -1,5 +1,8 @@
 from fastapi import APIRouter, Depends
-from queries.ticket_queries import SeatgeekTicketQueries
+from queries.ticket_queries import (
+    SeatgeekTicketQueries,
+    VividseatsTicketQueries,
+)
 
 router = APIRouter()
 
@@ -9,5 +12,14 @@ def get_seatgeek_ticket(
     home_team: str,
     date_time: str,
     repo: SeatgeekTicketQueries = Depends()
+):
+    return repo.get_ticket(away_team, home_team, date_time)
+
+@router.get("/api/tickets/vividseats")
+def get_vividseats_ticket(
+    away_team: str,
+    home_team: str,
+    date_time: str,
+    repo: VividseatsTicketQueries = Depends()
 ):
     return repo.get_ticket(away_team, home_team, date_time)
