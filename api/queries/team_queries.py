@@ -4,10 +4,9 @@ from models.teams import TeamOut, ListTeamOut
 
 class TeamQueries:
     """
-    Class containing queries for the teams table
+    Class containing queries for the teams ESPN API
 
-    Can be dependancy injected into a route and is also used by the poller
-    to populate the database
+    Can be dependency injected into a route and fetches team data from the ESPN API
     """
 
     def get_list_teams(self):

@@ -19,5 +19,4 @@ def get_team_details(
     repo: TeamQueries = Depends(),
 ) -> TeamOut:
     response = repo.get_team_details(id)
-    print(response)
     return response

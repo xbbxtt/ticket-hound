@@ -24,6 +24,8 @@ services:
             CORS_HOST: http://localhost:5173
             DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DB}
             SIGNING_KEY: ${SIGNING_KEY}
+            SEATGEEK_API_KEY: ${SEATGEEK_API_KEY}
+            SEATGEEK_CLIENT_ID: ${SEATGEEK_CLIENT_ID}
         build:
             context: api
             dockerfile: Dockerfile.dev
