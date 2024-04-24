@@ -1,5 +1,6 @@
 import requests
 from models.games import DetailOut, GameOut
+from fastapi import HTTPException
 
 class GameQueries:
     """
@@ -72,7 +73,7 @@ class GameQueries:
 
         except Exception as e:
             print(e)
-            return e
+            raise HTTPException(status_code=404, detail="Could not load games from ESPN API")
 
     def get_game_details(self, id):
         try:
@@ -98,4 +99,4 @@ class GameQueries:
 
         except Exception as e:
             print(e)
-            return e
+            raise HTTPException(status_code=404, detail="Could not load game details from ESPN API")

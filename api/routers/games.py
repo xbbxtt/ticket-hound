@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from queries.game_queries import GameQueries
 from typing import  Optional
 from datetime import date
@@ -14,12 +14,17 @@ def get_list_of_games(
     home_team: Optional[str]= None,
     repo: GameQueries = Depends(),
 ):
-    return repo.get_list_games(start_date, end_date, away_team, home_team)
-
+    games = repo.get_list_games(start_date, end_date, away_team, home_team)
+    if not games:
+        raise HTTPException(status_code=404, detail="Could not fetch any games")
+    return games
 
 @router.get("/api/games/{id}")
 def get_details_of_games(
     id: int,
     repo: GameQueries = Depends()
 ):
-    return repo.get_game_details(id)
+    game_details = repo.get_game_details(id)
+    if not game_details:
+        raise HTTPException(status_code=404, detail="Could not fetch any games")
+    return game_details

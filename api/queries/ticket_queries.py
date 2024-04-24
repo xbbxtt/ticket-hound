@@ -1,6 +1,7 @@
 import requests
 import os
 from models.tickets import TicketOut
+from fastapi import HTTPException
 
 
 class VividseatsTicketQueries:
@@ -47,11 +48,10 @@ class VividseatsTicketQueries:
                         provider_name=provider_name
                     )
 
-            print("********* COULD NOT LOAD GAME")
-
-
         except Exception as e:
             print(e)
+            raise HTTPException(status_code=424, detail="Could not connect to VividSeats API")
+
 
 
 
@@ -87,7 +87,6 @@ class SeatgeekTicketQueries:
                         provider_name=provider_name
                     )
 
-            print("********* Could not find game!", "*********")
-
         except Exception as e:
             print("EXCEPTION: ", e)
+            raise HTTPException(status_code=424, detail="Could not connect to SeatGeek API")

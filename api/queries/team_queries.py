@@ -1,5 +1,6 @@
 import requests
 from models.teams import TeamOut, ListTeamOut
+from fastapi import HTTPException
 
 
 class TeamQueries:
@@ -35,7 +36,7 @@ class TeamQueries:
             return result
 
         except Exception:
-            return {"message": "Could not load teams"}
+            raise HTTPException(status_code=424, detail="Could not load list of teams from ESPN API")
 
     def get_team_details(self, id):
         # Get the details for a specific team from the ESPN API
@@ -66,4 +67,4 @@ class TeamQueries:
 
         except Exception as e:
             print("********", e)
-            return {"message": "Could not load team details"}
+            raise HTTPException(status_code=404, detail="Could not load game details from ESPN API")

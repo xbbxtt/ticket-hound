@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from queries.ticket_queries import (
     SeatgeekTicketQueries,
     VividseatsTicketQueries,
 )
+from models.tickets import TicketOut
 
 router = APIRouter()
 
@@ -13,7 +14,10 @@ def get_seatgeek_ticket(
     date_time: str,
     repo: SeatgeekTicketQueries = Depends()
 ):
-    return repo.get_ticket(away_team, home_team, date_time)
+    ticket = repo.get_ticket(away_team, home_team, date_time)
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Ticket not available")
+    return ticket
 
 @router.get("/api/tickets/vividseats")
 def get_vividseats_ticket(
@@ -21,5 +25,8 @@ def get_vividseats_ticket(
     home_team: str,
     date_time: str,
     repo: VividseatsTicketQueries = Depends()
-):
-    return repo.get_ticket(away_team, home_team, date_time)
+) -> TicketOut:
+    ticket = repo.get_ticket(away_team, home_team, date_time)
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Ticket not available")
+    return ticket
