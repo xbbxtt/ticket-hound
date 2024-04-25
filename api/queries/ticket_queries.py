@@ -1,7 +1,10 @@
 import requests
+import json
 import os
 from models.tickets import TicketOut
 from fastapi import HTTPException
+import requests
+from bs4 import BeautifulSoup
 
 
 class VividseatsTicketQueries:
@@ -10,6 +13,7 @@ class VividseatsTicketQueries:
 
     Can be dependency injected into a route
     """
+
     def get_ticket(self, away_team, home_team, date_time):
         # The first thing to do is get the team id from the ESPN
         # API that allows us to use the schedule route
@@ -37,23 +41,26 @@ class VividseatsTicketQueries:
 
             for event in json_data["events"]:
                 if (event["date"][:-1]) == (date_time[:-4]):
-                    min_price = str(event["competitions"][0]["tickets"][0]["startingPrice"])
-                    url = event["competitions"][0]["tickets"][0]["links"][0]["href"]
+                    min_price = str(
+                        event["competitions"][0]["tickets"][0]["startingPrice"]
+                    )
+                    url = event["competitions"][0]["tickets"][0]["links"][0][
+                        "href"
+                    ]
                     logo = "https://1000logos.net/wp-content/uploads/2023/11/Vivid-Seats-Logo.png"
                     provider_name = "VividSeats"
                     return TicketOut(
                         min_price=min_price,
                         url=url,
                         logo=logo,
-                        provider_name=provider_name
+                        provider_name=provider_name,
                     )
 
         except Exception as e:
             print(e)
-            raise HTTPException(status_code=424, detail="Could not connect to VividSeats API")
-
-
-
+            raise HTTPException(
+                status_code=424, detail="Could not connect to VividSeats API"
+            )
 
 
 class SeatgeekTicketQueries:
@@ -65,15 +72,15 @@ class SeatgeekTicketQueries:
 
     def get_ticket(self, away_team, home_team, date_time):
         try:
-            seatgeek_api = os.environ['SEATGEEK_API_KEY']
-            seatgeek_client_id = os.environ['SEATGEEK_CLIENT_ID']
+            seatgeek_api = os.environ["SEATGEEK_API_KEY"]
+            seatgeek_client_id = os.environ["SEATGEEK_CLIENT_ID"]
             away_team = away_team.lower().replace(" ", "-")
             home_team = home_team.lower().replace(" ", "-")
             response = requests.get(
                 f"https://api.seatgeek.com/2/events?performers.slug={away_team}&performers.slug={home_team}&client_id={seatgeek_client_id}&client_secret={seatgeek_api}"
             )
             json_data = response.json()
-            date_time = date_time[:len(date_time) - 1]
+            date_time = date_time[: len(date_time) - 1]
             for event in json_data["events"]:
                 if event["datetime_utc"] == date_time:
                     min_price = str(event["stats"]["lowest_sg_base_price"])
@@ -84,9 +91,64 @@ class SeatgeekTicketQueries:
                         min_price=min_price,
                         url=url,
                         logo=logo,
-                        provider_name=provider_name
+                        provider_name=provider_name,
                     )
 
         except Exception as e:
             print("EXCEPTION: ", e)
-            raise HTTPException(status_code=424, detail="Could not connect to SeatGeek API")
+            raise HTTPException(
+                status_code=424, detail="Could not connect to SeatGeek API"
+            )
+
+
+class TickpickTicketQueries:
+    """
+    This class represents the data that was scraped from tickpick.com to get information about
+    game tickets for a particular mlb team
+
+    """
+
+    def get_ticket(self, home_team, date_time):
+        try:
+            home_team = home_team.lower()
+            home_team = home_team.replace(" ", "-")
+            url = f"https://www.tickpick.com/mlb/{home_team}-tickets/"
+            page = requests.get(url)
+            soup = BeautifulSoup(page.content, "lxml")
+            soup = soup.find(id="events")
+            results = soup.find_all(
+                "div", class_="srItem active allE SPORTSE hasPromos"
+            )
+
+            for result in results:
+                script_tag = result.find("script")
+                if script_tag:
+                    script_content = (
+                        script_tag.string.strip()
+                    )
+                    try:
+                        data = json.loads(
+                            script_content
+                        )
+                    except json.JSONDecodeError:
+                        raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
+
+                else:
+                    raise HTTPException(status_code = 404, detail="No script tag found or script tag is empty.")
+
+                if data["startDate"][:10] == date_time[:10]:
+                    min_price = data["offers"]["lowPrice"]
+                    url = data["offers"]["url"]
+                    logo = "https://sportsandentertainmenttravel.com/wp-content/uploads/2019/02/TickPick-Logo-300x300.png"
+                    provider_name = "TickPick"
+
+                    return TicketOut(
+                        min_price=min_price,
+                        url=url,
+                        logo=logo,
+                        provider_name=provider_name,
+                    )
+
+        except Exception as e:
+            print("EXCEPTION: ", e)
+            raise HTTPException(status_code=424, detail="Could not find game")
