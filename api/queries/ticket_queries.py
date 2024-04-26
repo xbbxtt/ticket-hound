@@ -1,4 +1,3 @@
-import requests
 import json
 import os
 from models.tickets import TicketOut
