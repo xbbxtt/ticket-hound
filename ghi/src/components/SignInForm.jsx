@@ -2,30 +2,17 @@
 import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 
-import useAuthService from '../hooks/useAuthService'
-
 export default function SignInForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { signin, user, error } = useAuthService()
 
-    /**
-     * @param {React.FormEvent<HTMLFormElement>} e
-     */
-    async function handleFormSubmit(e) {
+
+    function handleFormSubmit(e) {
         e.preventDefault()
-        await signin({ username, password })
-    }
-
-    if (user) {
-        console.log('user', user)
-        return <Navigate to="/" />
     }
 
     return (
         <form onSubmit={handleFormSubmit}>
-            {error && <div className="error">{error.message}</div>}
-
             <input
                 type="text"
                 name="username"
