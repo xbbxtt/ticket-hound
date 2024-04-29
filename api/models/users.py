@@ -1,8 +1,7 @@
 """
 Pydantic Models for Users.
 """
-
-from datetime import datetime
+from datetime import date
 from pydantic import BaseModel
 
 
@@ -15,7 +14,7 @@ class UserRequest(BaseModel):
     first_name: str
     last_name: str
     address: str
-    birthday: datetime
+    birthday: date
     password: str
     favorite_team_id: int
 
@@ -38,7 +37,7 @@ class UserResponse(BaseModel):
     username: str
     first_name: str
     last_name: str
-    birthday: datetime
+    birthday: date
     favorite_team_id: int
 
 
@@ -62,6 +61,6 @@ class UserWithPw(BaseModel):
     first_name: str
     last_name: str
     address: str
-    birthday: datetime
+    birthday: date
     password: str
     favorite_team_id: int

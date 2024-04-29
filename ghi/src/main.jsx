@@ -1,13 +1,13 @@
-//@ts-check
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-
+import { Provider } from 'react-redux'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import App from './App'
 
 import './index.css'
+import { store } from './app/store'
 
 const BASE_URL = import.meta.env.BASE_URL
 if (!BASE_URL) {
@@ -48,6 +48,8 @@ console.table(import.meta.env)
 const root = ReactDOM.createRoot(rootElement)
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 )

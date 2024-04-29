@@ -1,18 +1,34 @@
-// @ts-check
-import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { mlbApi } from '../app/apiSlice'
+import ErrorNotification from './ErrorNotification'
 
 export default function SignInForm() {
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const [signin, signinStatus] = mlbApi.useSigninMutation()
 
+    useEffect(() => {
+        if (signinStatus.isSuccess) {
+            navigate('/')
+        } else if (signinStatus.isError) {
+            console.log(signinStatus.error)
+            setErrorMessage(signinStatus.error.data.detail)
+            setUsername('')
+            setPassword('')
+        }
+    }, [signinStatus, navigate])
 
     function handleFormSubmit(e) {
         e.preventDefault()
+        signin({ username: username, password: password })
     }
 
     return (
         <form onSubmit={handleFormSubmit}>
+            {errorMessage && <ErrorNotification error={errorMessage} />}
             <input
                 type="text"
                 name="username"
@@ -21,7 +37,7 @@ export default function SignInForm() {
                 placeholder="Enter Username"
             />
             <input
-                type="text"
+                type="password"
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
