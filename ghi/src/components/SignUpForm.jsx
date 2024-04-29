@@ -4,6 +4,7 @@ import TeamDropDown from './teamDropDown'
 import ErrorNotification from './ErrorNotification'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import InputBox from './InputBox'
 
 export default function SignUpForm() {
     const navigate = useNavigate()
@@ -63,7 +64,8 @@ export default function SignUpForm() {
         <form onSubmit={handleFormSubmit}>
             {errorMessage && <ErrorNotification error={errorMessage} />}
             <div>
-                <input
+                <InputBox
+                    title="Email: "
                     type="email"
                     name="username"
                     value={formData.username}
@@ -72,7 +74,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="Password: "
                     type="password"
                     name="password"
                     value={formData.password}
@@ -81,7 +84,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="Confirm Password: "
                     type="password"
                     name="password_confirmation"
                     value={passwordConfirmation}
@@ -90,7 +94,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="First Name: "
                     type="text"
                     name="first_name"
                     value={formData.first_name}
@@ -99,7 +104,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="Last Name: "
                     type="text"
                     name="last_name"
                     value={formData.last_name}
@@ -108,7 +114,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="Address: "
                     type="text"
                     name="address"
                     value={formData.address}
@@ -117,7 +124,8 @@ export default function SignUpForm() {
                 />
             </div>
             <div>
-                <input
+                <InputBox
+                    title="Birthday: "
                     type="date"
                     name="birthday"
                     value={formData.birthday}

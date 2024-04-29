@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { mlbApi } from '../app/apiSlice'
 import ErrorNotification from './ErrorNotification'
+import InputBox from './InputBox'
+import { NavLink } from 'react-router-dom'
 
 export default function SignInForm() {
     const navigate = useNavigate()
@@ -27,23 +29,28 @@ export default function SignInForm() {
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            {errorMessage && <ErrorNotification error={errorMessage} />}
-            <input
-                type="text"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter Username"
-            />
-            <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Password"
-            />
-            <button type="submit">Sign In</button>
-        </form>
+        <>
+            <form onSubmit={handleFormSubmit}>
+                {errorMessage && <ErrorNotification error={errorMessage} />}
+                <InputBox
+                    title="Email: "
+                    type="text"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter Email"
+                />
+                <InputBox
+                    title="Password: "
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter Password"
+                />
+                <button type="submit">Sign In</button>
+            </form>
+            <NavLink to="/signup" className= "">Don't have an account? Sign up here!</NavLink>
+        </>
     )
 }
