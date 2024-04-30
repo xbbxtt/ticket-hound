@@ -49,8 +49,22 @@ export const mlbApi = createApi({
             }),
             providesTags: ['User'],
         }),
+        editUser: builder.mutation({
+            query: ({ ...editedUserData }) => ({
+                url: '/api/auth/user/edit',
+                method: 'PUT',
+                body: editedUserData,
+            }),
+            invalidatesTags: ['User'],
+        }),
     }),
 })
 
-export const { useListMlbTeamsQuery, useSignupMutation, useSigninMutation, useProfileQuery, useAuthenticateQuery } =
-    mlbApi
+export const {
+    useListMlbTeamsQuery,
+    useSignupMutation,
+    useSigninMutation,
+    useProfileQuery,
+    useAuthenticateQuery,
+    useEditUserMutation,
+} = mlbApi

@@ -169,7 +169,10 @@ def edit_user(
     repo: UserQueries = Depends(),
     old_user: UserQueries = Depends(try_get_jwt_user_data)
 ) -> UserRequest:
+    if len(user.password) > 0:
 
+        hashed_password = hash_password(user.password)
+        user.password = hashed_password
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"

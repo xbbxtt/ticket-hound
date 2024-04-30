@@ -6,6 +6,7 @@ import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import App from './App'
 import Profile from './components/Profile'
+import EditProfile from './components/EditProfile'
 
 import './index.css'
 import { store } from './app/store'
@@ -37,6 +38,13 @@ const router = createBrowserRouter(
                             <Profile />
                         </Wrapper>
                     ),
+                },
+                {  path: 'edit',
+                element: (
+                    <Wrapper>
+                        <EditProfile />
+                    </Wrapper>
+                ),
                 },
             ],
         },
