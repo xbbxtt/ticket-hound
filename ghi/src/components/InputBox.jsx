@@ -16,22 +16,3 @@ export default function InputBox({type, name, value, onChange, placeholder, titl
     )
 }
 
-
-
-
-// ;<div className="form-floating mb-3">
-//     <div>
-//         <label htmlFor="automobileVin" className="form-label">
-//             Automobile VIN:
-//         </label>
-//     </div>
-//     <input
-//         required
-//         className="form-control"
-//         name="vin"
-//         id="automobileVin"
-//         type="text"
-//         value={formData.vin}
-//         onChange={handleInputChange}
-//     />
-// </div>

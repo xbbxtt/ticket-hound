@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import App from './App'
+import Profile from './components/Profile'
 
 import './index.css'
 import { store } from './app/store'
+import Wrapper from './components/AuthWrapper'
 
 const BASE_URL = import.meta.env.BASE_URL
 if (!BASE_URL) {
@@ -27,6 +29,14 @@ const router = createBrowserRouter(
                 {
                     path: 'signin',
                     element: <SignInForm />,
+                },
+                {
+                    path: 'profile',
+                    element: (
+                        <Wrapper>
+                            <Profile />
+                        </Wrapper>
+                    ),
                 },
             ],
         },

@@ -4,6 +4,7 @@ export const mlbApi = createApi({
     reducerPath: 'mlbApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_HOST,
+        credentials: 'include',
     }),
     tagTypes: ['teamsList', 'User'],
     endpoints: (builder) => ({
@@ -36,8 +37,20 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        profile: builder.query({
+            query: () => ({
+                url: '/api/auth/user',
+            }),
+            providesTags: ['User'],
+        }),
+        authenticate: builder.query({
+            query: () => ({
+                url: '/api/auth/authenticate',
+            }),
+            providesTags: ['User'],
+        }),
     }),
 })
 
-export const { useListMlbTeamsQuery, useSignupMutation, useSigninMutation } =
+export const { useListMlbTeamsQuery, useSignupMutation, useSigninMutation, useProfileQuery, useAuthenticateQuery } =
     mlbApi
