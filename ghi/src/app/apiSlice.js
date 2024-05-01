@@ -37,12 +37,6 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        profile: builder.query({
-            query: () => ({
-                url: '/api/auth/user',
-            }),
-            providesTags: ['User'],
-        }),
         authenticate: builder.query({
             query: () => ({
                 url: '/api/auth/authenticate',
@@ -57,6 +51,7 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+
     }),
 })
 
@@ -64,7 +59,7 @@ export const {
     useListMlbTeamsQuery,
     useSignupMutation,
     useSigninMutation,
-    useProfileQuery,
     useAuthenticateQuery,
     useEditUserMutation,
+    useSignoutMutation,
 } = mlbApi

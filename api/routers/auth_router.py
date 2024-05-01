@@ -20,6 +20,7 @@ from models.users import (
     UserResponse,
     UserRequestIn,
     UserResponseOut,
+    UserWithPw,
 )
 
 from utils.authentication import (
@@ -122,7 +123,8 @@ async def signin(
 @router.get("/authenticate")
 async def authenticate(
     user: UserResponseOut = Depends(try_get_jwt_user_data),
-) -> UserResponseOut:
+    repo: UserQueries = Depends(),
+) -> UserWithPw|None:
     """
     This function returns the user if the user is logged in.
 
@@ -135,11 +137,9 @@ async def authenticate(
     is logged in or not
     """
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"
-        )
+        return None
+    user = repo.get_by_username(user.username)
     return user
-
 
 @router.delete("/signout")
 async def signout(
@@ -190,14 +190,3 @@ def delete_user(
             status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"
         )
     return repo.delete_user(user.id)
-
-@router.get("/user")
-def user_details(
-    repo: UserQueries = Depends(),
-    user: UserQueries = Depends(try_get_jwt_user_data)
-):
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Not logged in"
-        )
-    return repo.get_by_username(user.username)

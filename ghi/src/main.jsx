@@ -4,9 +4,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
+import Signout from './components/SignOut'
 import App from './App'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
+import Nav from './components/Nav'
 
 import './index.css'
 import { store } from './app/store'
@@ -33,18 +35,19 @@ const router = createBrowserRouter(
                 },
                 {
                     path: 'profile',
+                    element: <Profile />,
+                },
+                {
+                    path: 'edit',
                     element: (
                         <Wrapper>
-                            <Profile />
+                            <EditProfile />
                         </Wrapper>
                     ),
                 },
-                {  path: 'edit',
-                element: (
-                    <Wrapper>
-                        <EditProfile />
-                    </Wrapper>
-                ),
+                {
+                    path: 'signout',
+                    element: <Signout />,
                 },
             ],
         },

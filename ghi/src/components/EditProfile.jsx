@@ -7,7 +7,8 @@ import ErrorNotification from './ErrorNotification'
 
 export default function EditProfile() {
     const navigate = useNavigate()
-    const { data: user, isLoading: isLoadingUser } = mlbApi.useProfileQuery()
+    const { data: user, isLoading: isLoadingUser } =
+        mlbApi.useAuthenticateQuery()
     const [editProfile, setEditProfile] = mlbApi.useEditUserMutation()
     const [errorMessage, setErrorMessage] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -57,8 +58,6 @@ export default function EditProfile() {
         return <div>Loading...</div>
     }
 
-    console.log(user)
-    console.log(formData)
     return (
         <form onSubmit={handleFormSubmit}>
             {errorMessage && <ErrorNotification error={errorMessage} />}
