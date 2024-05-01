@@ -1,22 +1,34 @@
 import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Profile() {
     const { data: user, isLoading: isLoadingUser } =
         mlbApi.useAuthenticateQuery()
     const navigate = useNavigate()
+    const [trigger, result] = mlbApi.useLazyTeamDetailsQuery(
+        user?.favorite_team_id
+    )
+    const [teamName, setTeamName] = useState()
 
-     useEffect(() => {
-         if (!user && !isLoadingUser) {
-             navigate('/')
-         }
-     }, [user, isLoadingUser, navigate])
+    const { data: team, isLoading: isLoadingTeam } =
+        mlbApi.useTeamDetailsQuery()
+
+    useEffect(() => {
+        if (!user && !isLoadingUser) {
+            navigate('/')
+        } else if (user && !isLoadingUser) {
+            trigger(user.favorite_team_id)
+        }
+    }, [user, isLoadingUser, navigate, trigger])
+    useEffect(() => {
+        if (result.isSuccess) setTeamName(result.data)
+    }, [result])
 
     if (isLoadingUser) {
         return <div>Loading...</div>
     }
-
+    console.log(result)
     return (
         <div>
             <table>
@@ -37,10 +49,11 @@ export default function Profile() {
                         <td>{user?.last_name}</td>
                         <td>{user?.address}</td>
                         <td>{user?.birthday}</td>
-                        <td>{user?.favorite_team_id}</td>
+                        <td>{teamName?.full_name}</td>
                     </tr>
                 </tbody>
             </table>
+            <button onClick={() => navigate('/edit')}>Edit Profile</button>
         </div>
     )
 }

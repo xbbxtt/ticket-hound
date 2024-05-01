@@ -20,6 +20,9 @@ export default function Nav() {
         signout()
     }
 
+    const { data: user, isLoading: isLoadingUser } =
+        mlbApi.useAuthenticateQuery()
+
     return (
         <nav>
             <div>
@@ -27,26 +30,26 @@ export default function Nav() {
                     <li>
                         <NavLink to={'/'}>Ticket Hound</NavLink>
                     </li>
-                    <li>
-                        <NavLink to={'/profile'}> Profile</NavLink>
-                    </li>
-                    <li>
-                        <button
-                            // to = "/"
-                            onClick={handleLogOut}
-                        >
-                            Logout
-                        </button>
-                    </li>
-                    <li>
-                        <NavLink to={'/signup'}>Sign Up</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={'/signin'}>Log in </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={'/edit'}>Edit </NavLink>
-                    </li>
+                    {user && (
+                        <li>
+                            <NavLink to={'/profile'}> Profile</NavLink>
+                        </li>
+                    )}
+                    {user && (
+                        <li>
+                            <button onClick={handleLogOut}>Logout</button>
+                        </li>
+                    )}
+                    {!user && (
+                        <li>
+                            <NavLink to={'/signup'}>Sign Up</NavLink>
+                        </li>
+                    )}
+                    {!user && (
+                        <li>
+                            <NavLink to={'/signin'}>Log in </NavLink>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>

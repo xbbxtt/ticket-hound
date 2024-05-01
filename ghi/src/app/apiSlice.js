@@ -51,7 +51,11 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-
+        teamDetails: builder.query({
+            query: (id) => ({
+                url: `/api/teams/${id}`,
+            }),
+        }),
     }),
 })
 
@@ -62,4 +66,6 @@ export const {
     useAuthenticateQuery,
     useEditUserMutation,
     useSignoutMutation,
+    useTeamDetailsQuery,
+    useLazyTeamDetailsQuery,
 } = mlbApi

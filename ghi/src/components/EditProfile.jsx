@@ -124,7 +124,7 @@ export default function EditProfile() {
                 value={formData.favorite_team_id}
                 onChangeFunction={handleFormChange}
             />
-            <button type="submit">Edit</button>
+            <button type="submit">Confirm</button>
         </form>
     )
 }
