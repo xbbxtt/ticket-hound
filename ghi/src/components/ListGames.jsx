@@ -17,8 +17,6 @@ export default function ListGames({
     } = mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
 
     const [gamesList, setGamesList] = useState([])
-    // const [errorMessage, setErrorMessage] = useState('')
-
     useEffect(() => {
         if (isError) {
             setError(error.data.detail)
@@ -30,8 +28,6 @@ export default function ListGames({
     }, [isGamesLoading, setGamesList, gamesData, isError, error, setError])
 
     if (isGamesLoading) return <div>Loading...</div>
-
-    // if (errorMessage) return <ErrorNotification error={errorMessage} />
 
     if (error) return
 
