@@ -7,8 +7,6 @@ export default function ListGames({
     awayTeam = null,
     homeTeam = null,
 }) {
-
-    console.log("STARTDATE: ", startDate)
     // Query to grab the list of games
     const { data: gamesData, isLoading: isGamesLoading } =
         mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
@@ -17,13 +15,11 @@ export default function ListGames({
 
     useEffect(() => {
         if (gamesData && !isGamesLoading) {
-            console.log('GAMESDATA: ', gamesData)
             setGamesList([...gamesData])
         }
     }, [isGamesLoading, setGamesList, gamesData])
 
     if (isGamesLoading) return <div>Loading...</div>
-    console.log('GAMESDATA:', gamesData)
 
     return (
         <div>
@@ -38,7 +34,7 @@ export default function ListGames({
                 <tbody>
                     {gamesList.map((game) => {
                         return (
-                            <tr>
+                            <tr key={game.id}>
                                 <td>{game.date_time}</td>
                                 <td>{`${game.away_team}@${game.home_team}`}</td>
                                 <td>{game.location}</td>

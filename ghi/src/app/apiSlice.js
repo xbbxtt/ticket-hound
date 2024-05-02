@@ -57,9 +57,25 @@ export const mlbApi = createApi({
             }),
         }),
         gamesList: builder.query({
-            query: ({ startDate, endDate, awayTeam, homeTeam }) => ({
-                url: `/api/games?start_date=${startDate}&end_date=${endDate}`,
-            }),
+            query: ({ startDate, endDate, awayTeam, homeTeam }) => {
+                if (!awayTeam && !homeTeam) {
+                    return {
+                        url: `/api/games?start_date=${startDate}&end_date=${endDate}`,
+                    }
+                } else if (!awayTeam) {
+                    return {
+                        url: `/api/games?start_date=${startDate}&end_date=${endDate}&home_team=${homeTeam}`,
+                    }
+                } else if (!homeTeam) {
+                    return {
+                        url: `/api/games?start_date=${startDate}&end_date=${endDate}&away_team=${awayTeam}`,
+                    }
+                } else {
+                    return {
+                        url: `/api/games?start_date=${startDate}&end_date=${endDate}&away_team=${awayTeam}&home_team=${homeTeam}`,
+                    }
+                }
+            },
         }),
     }),
 })

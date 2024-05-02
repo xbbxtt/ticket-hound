@@ -73,7 +73,6 @@ export default function GamesSchedule() {
     if (isLoadingUser) {
         return <div>Loading...</div>
     }
-    console.log(formData)
     return (
         <>
             {teamName && (
