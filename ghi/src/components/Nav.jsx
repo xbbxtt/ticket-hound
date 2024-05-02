@@ -32,6 +32,11 @@ export default function Nav() {
                     </li>
                     {user && (
                         <li>
+                            <NavLink to={'/games'}>Games</NavLink>
+                        </li>
+                    )}
+                    {user && (
+                        <li>
                             <NavLink to={'/profile'}> Profile</NavLink>
                         </li>
                     )}

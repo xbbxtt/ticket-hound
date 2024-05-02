@@ -1,6 +1,10 @@
 import { mlbApi } from '../app/apiSlice'
 
-const TeamDropDown = ({ value, onChangeFunction }) => {
+const TeamDropDown = ({
+    value,
+    onChangeFunction,
+    name = 'favorite_team_id',
+}) => {
     const { data: teamData, isLoading: teamsIsLoading } =
         mlbApi.useListMlbTeamsQuery()
 
@@ -10,12 +14,12 @@ const TeamDropDown = ({ value, onChangeFunction }) => {
     return (
         <div>
             <select
-                name="favorite_team_id"
+                name={name}
                 value={value}
                 onChange={onChangeFunction}
                 required
             >
-                <option value="">Choose a Team!</option>
+                <option value="" defaultValue="">Choose a Team!</option>
                 {teamData.map((team) => {
                     return (
                         <option key={team.id} value={team.id}>
