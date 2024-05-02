@@ -50,6 +50,14 @@ export default function Profile() {
                         <td>{user?.address}</td>
                         <td>{user?.birthday}</td>
                         <td>{teamName?.full_name}</td>
+                        <td>
+                            {teamName && (
+                                <img
+                                    src={teamName.logo}
+                                    alt="Favorite team's logo"
+                                />
+                            )}
+                        </td>
                     </tr>
                 </tbody>
             </table>
