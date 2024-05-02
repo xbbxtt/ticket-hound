@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import ScheduleInput from './ScheduleInput'
 import ListGames from './ListGames'
 import { useEffect, useState } from 'react'
+import ErrorNotification from './ErrorNotification'
 
 export default function GamesSchedule() {
     // We need to get the users input
@@ -31,6 +32,7 @@ export default function GamesSchedule() {
         home_team: '',
     })
     const [displayTeamsList, setDisplayTeamsList] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()
 
@@ -66,22 +68,17 @@ export default function GamesSchedule() {
         }
     }, [result, setDisplayTeamsList])
 
-    async function handleFormSubmit(e) {
-        e.preventDefault()
-    }
-
     if (isLoadingUser) {
         return <div>Loading...</div>
     }
     return (
         <>
             {teamName && (
-                <form onSubmit={handleFormSubmit}>
+                <form>
                     <ScheduleInput
                         formData={formData}
                         handleFormChangeFunction={handleFormChange}
                     />
-                    <button>submit</button>
                 </form>
             )}
             {displayTeamsList && (
@@ -90,8 +87,10 @@ export default function GamesSchedule() {
                     endDate={formData.end_date}
                     awayTeam={formData.away_team}
                     homeTeam={formData.home_team}
+                    setError={setErrorMessage}
                 />
             )}
+            {errorMessage && <ErrorNotification error={errorMessage} />}
         </>
     )
 }

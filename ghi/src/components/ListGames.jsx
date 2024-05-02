@@ -6,20 +6,34 @@ export default function ListGames({
     endDate,
     awayTeam = null,
     homeTeam = null,
+    setError,
 }) {
     // Query to grab the list of games
-    const { data: gamesData, isLoading: isGamesLoading } =
-        mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
+    const {
+        data: gamesData,
+        isLoading: isGamesLoading,
+        error,
+        isError,
+    } = mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
 
     const [gamesList, setGamesList] = useState([])
+    // const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
-        if (gamesData && !isGamesLoading) {
+        if (isError) {
+            setError(error.data.detail)
+            setGamesList([])
+        } else if (gamesData && !isGamesLoading) {
+            setError('')
             setGamesList([...gamesData])
         }
-    }, [isGamesLoading, setGamesList, gamesData])
+    }, [isGamesLoading, setGamesList, gamesData, isError, error, setError])
 
     if (isGamesLoading) return <div>Loading...</div>
+
+    // if (errorMessage) return <ErrorNotification error={errorMessage} />
+
+    if (error) return
 
     return (
         <div>

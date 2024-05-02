@@ -19,7 +19,7 @@ const TeamDropDown = ({
                 onChange={onChangeFunction}
                 required
             >
-                <option defaultValue="">Choose a Team!</option>
+                <option value="" defaultValue="">Choose a Team!</option>
                 {teamData.map((team) => {
                     return (
                         <option key={team.id} value={team.id}>
