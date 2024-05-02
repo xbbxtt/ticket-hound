@@ -8,7 +8,7 @@ const Wrapper = ({ children }) => {
     const navigate = useNavigate()
     useEffect(() => {
         if (!user && !isLoadingUser) {
-            navigate('/')
+            navigate('/signin')
         }
     }, [user, isLoadingUser, navigate])
 
