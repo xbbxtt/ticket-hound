@@ -1,6 +1,7 @@
 import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import ScheduleInput from './ScheduleInput'
+import { useEffect, useState } from 'react'
 
 export default function GamesSchedule() {
     // We need to get the users input
@@ -13,12 +14,16 @@ export default function GamesSchedule() {
     const [trigger, result] = mlbApi.useLazyTeamDetailsQuery(
         user?.favorite_team_id
     )
+    // Query to grab the list of games
+    const { data: gamesData, isLoading: isGamesLoading } =
+        mlbApi.useGamesListQuery({ start_date, end_date, away_team, home_team })
 
     // Determines the current date so we can seed the input form
     const date = new Date().toJSON().slice(0, 10)
 
     // Sets the users favorite team's name
     const [teamName, setTeamName] = useState()
+    // Tracks if
     // Sets up the formData that will be used in the form
     const [formData, setFormData] = useState({
         start_date: todays_date,
@@ -45,12 +50,18 @@ export default function GamesSchedule() {
             navigate('/signin')
         } else if (user && !isLoadingUser) {
             trigger(user.favorite_team_id)
+            setFormData({
+                ...formData,
+                home_team: user.favorite_team_id,
+            })
         }
     }, [user, isLoadingUser, navigate, trigger])
 
     // Once the user's favorite team has been fetched, render it
     useEffect(() => {
-        if (result.isSuccess) setTeamName(result.data)
+        if (result.isSuccess) {
+            setTeamName(result.data)
+        }
     }, [result])
 
     const handleFormSubmit = async () => {}
