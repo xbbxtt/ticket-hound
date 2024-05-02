@@ -11,9 +11,6 @@ export default function Profile() {
     )
     const [teamName, setTeamName] = useState()
 
-    const { data: team, isLoading: isLoadingTeam } =
-        mlbApi.useTeamDetailsQuery()
-
     useEffect(() => {
         if (!user && !isLoadingUser) {
             navigate('/')
@@ -28,7 +25,6 @@ export default function Profile() {
     if (isLoadingUser) {
         return <div>Loading...</div>
     }
-    console.log(result)
     return (
         <div>
             <table>
