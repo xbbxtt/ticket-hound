@@ -13,7 +13,6 @@ export default function GamesSchedule() {
     const [trigger, result] = mlbApi.useLazyTeamDetailsQuery(
         user?.favorite_team_id
     )
-    // Needs to load a teams details, (not lazy)
 
     // Determines the current date so we can seed the input form
     const date = new Date().toJSON().slice(0, 10)
