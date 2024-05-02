@@ -1,17 +1,52 @@
 import { useEffect, useState } from 'react'
+import { mlbApi } from '../app/apiSlice'
 
 export default function ListGames({
-    start_date,
-    end_date,
-    away_team = null,
-    home_team = null,
+    startDate,
+    endDate,
+    awayTeam = null,
+    homeTeam = null,
 }) {
+
+    console.log("STARTDATE: ", startDate)
     // Query to grab the list of games
     const { data: gamesData, isLoading: isGamesLoading } =
-        mlbApi.useGamesListQuery({ start_date, end_date, away_team, home_team })
+        mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
+
+    const [gamesList, setGamesList] = useState([])
+
+    useEffect(() => {
+        if (gamesData && !isGamesLoading) {
+            console.log('GAMESDATA: ', gamesData)
+            setGamesList([...gamesData])
+        }
+    }, [isGamesLoading, setGamesList, gamesData])
 
     if (isGamesLoading) return <div>Loading...</div>
-    console.log(gamesData)
+    console.log('GAMESDATA:', gamesData)
 
-    return <div>Games are Loaded, write the code if you want to see them</div>
+    return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date/Time</th>
+                        <th>Teams</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {gamesList.map((game) => {
+                        return (
+                            <tr>
+                                <td>{game.date_time}</td>
+                                <td>{`${game.away_team}@${game.home_team}`}</td>
+                                <td>{game.location}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 }

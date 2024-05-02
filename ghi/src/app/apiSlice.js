@@ -57,10 +57,8 @@ export const mlbApi = createApi({
             }),
         }),
         gamesList: builder.query({
-            query: ({ start_date, end_date, away_team, home_team }) => ({
-                url: `/api/games?start_date=${start_date}&end_date=${end_date}
-                    ${away_team ? `&away_team=${away_team}` : ''}
-                    ${home_team ? `&home_team=${home_team}` : ''}`,
+            query: ({ startDate, endDate, awayTeam, homeTeam }) => ({
+                url: `/api/games?start_date=${startDate}&end_date=${endDate}`,
             }),
         }),
     }),
