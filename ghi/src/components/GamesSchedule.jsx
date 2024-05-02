@@ -1,6 +1,7 @@
 import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import ScheduleInput from './ScheduleInput'
+import ListGames from './ListGames'
 import { useEffect, useState } from 'react'
 
 export default function GamesSchedule() {
@@ -14,19 +15,14 @@ export default function GamesSchedule() {
     const [trigger, result] = mlbApi.useLazyTeamDetailsQuery(
         user?.favorite_team_id
     )
-    // Query to grab the list of games
-    const { data: gamesData, isLoading: isGamesLoading } =
-        mlbApi.useGamesListQuery({ start_date, end_date, away_team, home_team })
-
     // Determines the current date so we can seed the input form
-    const date = new Date().toJSON().slice(0, 10)
+    const todaysDate = new Date().toJSON().slice(0, 10)
 
     // Sets the users favorite team's name
     const [teamName, setTeamName] = useState()
-    // Tracks if
     // Sets up the formData that will be used in the form
     const [formData, setFormData] = useState({
-        start_date: todays_date,
+        start_date: todaysDate,
         end_date: '',
         away_team: '',
         home_team: '',
@@ -64,19 +60,21 @@ export default function GamesSchedule() {
         }
     }, [result])
 
-    const handleFormSubmit = async () => {}
+    async function handleFormSubmit(e) {
+        e.preventDefault()
+    }
 
     if (isLoadingUser) {
         return <div>Loading...</div>
     }
-
+    console.log(formData)
     return (
         <>
             {teamName && (
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <ScheduleInput
-                        favoriteTeamName={teamName.full_name}
-                        onChangeFunction={handleFormChange}
+                        formData={formData}
+                        handleFormChangeFunction={handleFormChange}
                     />
                     <button>submit</button>
                 </form>

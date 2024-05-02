@@ -8,7 +8,7 @@ import Signout from './components/SignOut'
 import App from './App'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
-import GamesSchedule from 'components/GamesSchedule'
+import GamesSchedule from './components/GamesSchedule'
 import Nav from './components/Nav'
 
 import './index.css'
