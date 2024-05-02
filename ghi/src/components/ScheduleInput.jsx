@@ -20,11 +20,13 @@ export default function ScheduleInput({ formData, handleFormChangeFunction }) {
                 placeholder=""
                 title="End Date"
             />
+            <label htmlFor="away_team">Away Team</label>
             <TeamDropDown
                 name="away_team"
                 value={formData.away_team}
                 onChangeFunction={handleFormChangeFunction}
             />
+            <label htmlFor="home_team">Home Team</label>
             <TeamDropDown
                 name="home_team"
                 value={formData.home_team}
