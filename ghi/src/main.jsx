@@ -9,6 +9,7 @@ import App from './App'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
 import GamesSchedule from './components/GamesSchedule'
+import GameDetails from './components/GameDetails'
 import Nav from './components/Nav'
 
 import './index.css'
@@ -55,6 +56,14 @@ const router = createBrowserRouter(
                     element: (
                         <Wrapper>
                             <GamesSchedule />
+                        </Wrapper>
+                    ),
+                },
+                {
+                    path: 'game',
+                    element: (
+                        <Wrapper>
+                            <GameDetails />
                         </Wrapper>
                     ),
                 },
