@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom'
+import { mlbApi } from '../app/apiSlice'
 
-export default function GetTickets(awayTeam, homeTeam, dateTime, query) {
-    const { data: ticketData, isLoading: isTicketLoading } = query(
-        awayTeam,
-        homeTeam,
-        dateTime
-    )
+export default function GetVividseatsTickets(awayTeam, homeTeam, dateTime) {
+    const { data: ticketData, isLoading: isTicketLoading } =
+        mlbApi.useVividseatsTicketsQuery(awayTeam, homeTeam, dateTime)
 
     if (isTicketLoading) return <div>Loading...</div>
 

@@ -83,10 +83,20 @@ export const mlbApi = createApi({
             }),
         }),
         seatgeekTickets: builder.query({
-            query: ({awayTeam, homeTeam, dateTime}) => ({
-                url: `/api/tickets/seatgeek?away_team=${awayTeam}&home_team=${homeTeam}&date_time=${dateTime}`
-            })
-        })
+            query: ({ awayTeam, homeTeam, dateTime }) => ({
+                url: `/api/tickets/seatgeek?away_team=${awayTeam}&home_team=${homeTeam}&date_time=${dateTime}`,
+            }),
+        }),
+        vividseatsTickets: builder.query({
+            query: ({ awayTeam, homeTeam, dateTime }) => ({
+                url: `/api/tickets/vividseats?away_team=${awayTeam}&home_team=${homeTeam}&date_time=${dateTime}`,
+            }),
+        }),
+        tickpickTickets: builder.query({
+            query: ({ awayTeam, homeTeam, dateTime }) => ({
+                url: `/api/tickets/vividseats?home_team=${homeTeam}&date_time=${dateTime}`,
+            }),
+        }),
     }),
 })
 
@@ -102,4 +112,6 @@ export const {
     useGamesListQuery,
     useGameDetailsQuery,
     useSeatgeekTicketsQuery,
+    useVividseatsTicketsQuery,
+    useTickpickTicketsQuery
 } = mlbApi
