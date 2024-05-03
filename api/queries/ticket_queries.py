@@ -118,6 +118,12 @@ class TickpickTicketQueries:
             results = soup.find_all(
                 "div", class_="srItem active allE SPORTSE hasPromos"
             )
+            
+            results_without_promos = soup.find_all(
+                "div", class_="srItem active allE SPORTSE"
+            )
+            for result in results_without_promos:
+                results.append(result)
 
             for result in results:
                 script_tag = result.find("script")

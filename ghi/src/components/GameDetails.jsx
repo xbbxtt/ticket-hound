@@ -36,7 +36,6 @@ export default function GameDetails() {
                             <td>{gameData.game_date.slice(11, 19)}</td>
                             <td>{gameData.game_date.slice(0, 10)}</td>
                         </tr>
-                        <div>Individual Prices</div>
                         <tr>
                             <td>
                                 <GetSeatgeekTickets
