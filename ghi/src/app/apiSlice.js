@@ -77,6 +77,11 @@ export const mlbApi = createApi({
                 }
             },
         }),
+        GameDetails: builder.query({
+            query: (id) => ({
+                url: `/api/games/${id}`,
+            }),
+        }),
     }),
 })
 
@@ -90,4 +95,5 @@ export const {
     useTeamDetailsQuery,
     useLazyTeamDetailsQuery,
     useGamesListQuery,
+    useGameDetailsQuery,
 } = mlbApi
