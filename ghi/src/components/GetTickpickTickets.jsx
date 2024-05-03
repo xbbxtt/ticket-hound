@@ -6,7 +6,6 @@ export default function GetTickpickTickets(homeTeam, dateTime) {
         mlbApi.useTickpickTicketsQuery(homeTeam, dateTime)
 
     if (isTicketLoading) return <div>Loading...</div>
-    console.log(ticketData)
 
     return (
         <div>
