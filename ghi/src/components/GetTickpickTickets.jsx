@@ -1,12 +1,26 @@
 import { Link } from 'react-router-dom'
 import { mlbApi } from '../app/apiSlice'
+import ErrorNotification from './ErrorNotification'
+import { useEffect, useState } from 'react'
 
 export default function GetTickpickTickets(homeTeam, dateTime) {
-    const { data: ticketData, isLoading: isTicketLoading } =
-        mlbApi.useTickpickTicketsQuery(homeTeam, dateTime)
+    const {
+        data: ticketData,
+        isLoading: isTicketLoading,
+        error,
+        isError,
+    } = mlbApi.useTickpickTicketsQuery(homeTeam, dateTime)
+
+    const [errorMessage, setErrorMessage] = useState('')
+
+    useEffect(() => {
+        if (isError) {
+            setErrorMessage(error.data.detail)
+        }
+    }, [error, isError, setErrorMessage, isTicketLoading])
 
     if (isTicketLoading) return <div>Loading...</div>
-    console.log(ticketData)
+    if (error) return <ErrorNotification error={errorMessage} />
 
     return (
         <div>
