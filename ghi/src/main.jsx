@@ -58,16 +58,6 @@ const router = createBrowserRouter(
                             <GamesSchedule />
                         </Wrapper>
                     ),
-                    // children: [
-                    //     {
-                    //         path: ':id',
-                    //         element: (
-                    //             <Wrapper>
-                    //                 <GameDetails />
-                    //             </Wrapper>
-                    //         ),
-                    //     },
-                    // ],
                 },
                 {
                     path: 'game',
