@@ -77,11 +77,16 @@ export const mlbApi = createApi({
                 }
             },
         }),
-        GameDetails: builder.query({
+        gameDetails: builder.query({
             query: (id) => ({
                 url: `/api/games/${id}`,
             }),
         }),
+        seatgeekTickets: builder.query({
+            query: ({awayTeam, homeTeam, dateTime}) => ({
+                url: `/api/tickets/seatgeek?away_team=${awayTeam}&home_team=${homeTeam}&date_time=${dateTime}`
+            })
+        })
     }),
 })
 
@@ -96,4 +101,5 @@ export const {
     useLazyTeamDetailsQuery,
     useGamesListQuery,
     useGameDetailsQuery,
+    useSeatgeekTicketsQuery,
 } = mlbApi

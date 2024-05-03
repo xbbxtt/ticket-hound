@@ -1,5 +1,6 @@
 import { mlbApi } from '../app/apiSlice'
 import { useLocation } from 'react-router-dom'
+import GetTickets from './getTickets'
 
 export default function GameDetails() {
     // Using the game's id, this component will make
@@ -32,6 +33,17 @@ export default function GameDetails() {
                             <td>{gameData.location}</td>
                             <td>{gameData.game_date.slice(11, 19)}</td>
                             <td>{gameData.game_date.slice(0, 10)}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <GetTickets
+                                    awayTeam={gameData.away_team}
+                                    homeTeam={gameData.home_team}
+                                    dateTime={gameData.game_date}
+                                    query={mlbApi.useSeatgeekTicketsQuery}
+                                />
+                            </td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
