@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { mlbApi } from '../app/apiSlice'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function ListGames({
     startDate,
@@ -17,6 +18,12 @@ export default function ListGames({
     } = mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
 
     const [gamesList, setGamesList] = useState([])
+    const navigate = useNavigate()
+
+    const handleTicketClick = (id) => {
+        navigate('/game', { state: { id: id } })
+    }
+
     useEffect(() => {
         if (isError) {
             setError(error.data.detail)
@@ -39,15 +46,28 @@ export default function ListGames({
                         <th>Date/Time</th>
                         <th>Teams</th>
                         <th>Location</th>
+                        <th>Tickets</th>
                     </tr>
                 </thead>
                 <tbody>
                     {gamesList.map((game) => {
+                        const handleClick = () => {
+                            setGameID(game.id)
+                        }
                         return (
                             <tr key={game.id}>
                                 <td>{game.date_time}</td>
                                 <td>{`${game.away_team}@${game.home_team}`}</td>
                                 <td>{game.location}</td>
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            handleTicketClick(game.id)
+                                        }
+                                    >
+                                        Tickets
+                                    </button>
+                                </td>
                             </tr>
                         )
                     })}
