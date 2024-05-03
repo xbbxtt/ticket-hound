@@ -18,7 +18,6 @@ export default function ListGames({
     } = mlbApi.useGamesListQuery({ startDate, endDate, awayTeam, homeTeam })
 
     const [gamesList, setGamesList] = useState([])
-    const [gameID, setGameID] = useState('')
     const navigate = useNavigate()
 
     const handleTicketClick = (id) => {
@@ -60,19 +59,6 @@ export default function ListGames({
                                 <td>{game.date_time}</td>
                                 <td>{`${game.away_team}@${game.home_team}`}</td>
                                 <td>{game.location}</td>
-                                {/* <td>
-                                    <Link
-                                        to={{
-                                            pathname: '/game',
-                                            state: { data: game.id },
-                                        }}
-                                        onClick={handleClick}
-                                        // to={`/game/${game.id}`}
-                                        // state={{ data: gameID }}
-                                    >
-                                        Tickets
-                                    </Link>
-                                </td> */}
                                 <td>
                                     <button
                                         onClick={() =>
