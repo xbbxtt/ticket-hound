@@ -93,8 +93,8 @@ export const mlbApi = createApi({
             }),
         }),
         tickpickTickets: builder.query({
-            query: ({ awayTeam, homeTeam, dateTime }) => ({
-                url: `/api/tickets/vividseats?home_team=${homeTeam}&date_time=${dateTime}`,
+            query: ({ homeTeam, dateTime }) => ({
+                url: `/api/tickets/tickpick?home_team=${homeTeam}&date_time=${dateTime}`,
             }),
         }),
     }),
@@ -113,5 +113,5 @@ export const {
     useGameDetailsQuery,
     useSeatgeekTicketsQuery,
     useVividseatsTicketsQuery,
-    useTickpickTicketsQuery
+    useTickpickTicketsQuery,
 } = mlbApi
