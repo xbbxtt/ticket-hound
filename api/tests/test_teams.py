@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from models.teams import ListTeamOut
+from models.teams import ListTeamOut, TeamOut
 from queries.team_queries import TeamQueries
 from main import app
 
@@ -12,6 +12,18 @@ class FakeTeamQueries:
           full_name="New York Yankees",
           logo="random string",
       )]
+
+  def get_team_details(self, id):
+    return TeamOut(
+        team_name= "string",
+        full_name= "string",
+        color= "string",
+        alternate_color= "string",
+        logo= "string",
+        location= "string",
+        record= "string",
+        standing= "string",
+    )
 
 
 def test_get_list_of_teams():
@@ -28,3 +40,22 @@ def test_get_list_of_teams():
     "logo": "random string"
   }
 ]
+
+def test_get_team_details():
+  app.dependency_overrides[TeamQueries] = FakeTeamQueries
+  response = client.get("/api/teams/7")
+  app.dependency_overrides = {}
+
+  assert response.status_code == 200
+  assert response.json() == (
+  {
+  "team_name": "string",
+  "full_name": "string",
+  "color": "string",
+  "alternate_color": "string",
+  "logo": "string",
+  "location": "string",
+  "record": "string",
+  "standing": "string"
+  }
+  )
