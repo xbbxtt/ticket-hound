@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from models.games import DetailOut
+from models.games import DetailOut, GameOut
 from queries.game_queries import GameQueries
 from main import app
 
@@ -19,6 +19,15 @@ class FakeGameQueries:
             )
         ]
 
+    def get_game_details(self, id):
+        return GameOut(
+            id=0,
+            date_time="2024-05-08T16:35:00Z",
+            home_team="string",
+            away_team="string",
+            location="string",
+        )
+
 
 def test_get_list_games():
     app.dependency_overrides[GameQueries] = FakeGameQueries
@@ -26,7 +35,7 @@ def test_get_list_games():
         "/api/games?start_date=2024-05-08&end_date=2024-05-09"
     )
 
-    app.dependecny_overrides = {}
+    app.dependency_overrides = {}
 
     assert response.status_code == 200
     assert response.json() == [
@@ -38,3 +47,20 @@ def test_get_list_games():
             "location": "string",
         }
     ]
+
+def test_get_details_of_games():
+    app.dependency_overrides[GameQueries] = FakeGameQueries
+    response = client.get(
+        "/api/games/5"
+    )
+
+    app.dependency_overrides = {}
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 0,
+        "home_team": "string",
+        "away_team": "string",
+        "location": "string",
+        "date_time": "2024-05-08T16:35:00Z"
+    }
