@@ -11,6 +11,7 @@ import EditProfile from './components/EditProfile'
 import GamesSchedule from './components/GamesSchedule'
 import GameDetails from './components/GameDetails'
 import Nav from './components/Nav'
+import MainPage from './components/MainPage'
 
 import './index.css'
 import { store } from './app/store'
@@ -67,6 +68,12 @@ const router = createBrowserRouter(
                         </Wrapper>
                     ),
                 },
+                {
+                    path: '',
+                    element: (
+                        <MainPage />
+                    )
+                }
             ],
         },
     ],

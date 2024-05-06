@@ -8,6 +8,7 @@ export default function ListGames({
     awayTeam = null,
     homeTeam = null,
     setError,
+    limit = null,
 }) {
     // Query to grab the list of games
     const {
@@ -30,9 +31,14 @@ export default function ListGames({
             setGamesList([])
         } else if (gamesData && !isGamesLoading) {
             setError('')
-            setGamesList([...gamesData])
+            console.log([...gamesData.slice(0, limit)])
+            if (limit && limit <= gamesData.length) {
+                setGamesList([...gamesData.slice(0, limit)])
+            } else {
+                setGamesList([...gamesData])
+            }
         }
-    }, [isGamesLoading, setGamesList, gamesData, isError, error, setError])
+    }, [isGamesLoading, setGamesList, gamesData, isError, error, setError, limit])
 
     if (isGamesLoading) return <div>Loading...</div>
 
