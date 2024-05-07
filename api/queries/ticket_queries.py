@@ -84,7 +84,7 @@ class SeatgeekTicketQueries:
                 if event["datetime_utc"] == date_time:
                     min_price = str(event["stats"]["lowest_sg_base_price"])
                     url = event["url"]
-                    logo = "https://hoodzpahdesign.com/wp-content/uploads/2021/07/SeatGeek-wordmark-BTS-01-2048x1152.png"
+                    logo = "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2funcc.sidearmsports.com%2fimages%2f2023%2f8%2f24%2fColor_Gatorade_Inline_bQU5r.png&width=1416&type=png"
                     provider_name = "SeatGeek"
                     return TicketOut(
                         min_price=min_price,

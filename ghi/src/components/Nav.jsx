@@ -24,38 +24,64 @@ export default function Nav() {
         mlbApi.useAuthenticateQuery()
 
     return (
-        <nav>
-            <div>
-                <ul>
-                    <li>
-                        <NavLink to={'/'}>Ticket Hound</NavLink>
-                    </li>
-                    {user && (
-                        <li>
-                            <NavLink to={'/games'}>Games</NavLink>
+        <nav
+            className="navbar navbar-expand-lg navbar bg-success"
+            id="navigation-container"
+        >
+            <div className="container-fluid">
+                <div>
+                    <ul className="navbar-nav me-auto mb-2">
+                        <li className="nav-item nav-link" role="button">
+                            <NavLink className="navbar-brand" to={'/'}>
+                                Ticket Hound
+                            </NavLink>
                         </li>
-                    )}
-                    {user && (
-                        <li>
-                            <NavLink to={'/profile'}> Profile</NavLink>
-                        </li>
-                    )}
-                    {user && (
-                        <li>
-                            <button onClick={handleLogOut}>Logout</button>
-                        </li>
-                    )}
-                    {!user && (
-                        <li>
-                            <NavLink to={'/signup'}>Sign Up</NavLink>
-                        </li>
-                    )}
-                    {!user && (
-                        <li>
-                            <NavLink to={'/signin'}>Log in </NavLink>
-                        </li>
-                    )}
-                </ul>
+                        {user && (
+                            <li className="nav-item mb-1" role="button">
+                                <NavLink className="nav-link" to={'/games'}>
+                                    Games
+                                </NavLink>
+                            </li>
+                        )}
+                        {user && (
+                            <li className="nav-item mb-1" role="button">
+                                <NavLink className="nav-link" to={'/profile'}>
+                                    Profile
+                                </NavLink>
+                            </li>
+                        )}
+                        {user && (
+                            <div
+                                class="d-grid gap-2 d-md-flex justify-content-md-end"
+                                id="signout-button"
+                            >
+                                <li className="nav-item mb-1" role="button">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary btn-lg"
+                                        onClick={handleLogOut}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </div>
+                        )}
+                        {!user && (
+                            <li className="nav-item mb-1" role="button">
+                                <NavLink className="nav-link" to={'/signup'}>
+                                    Sign Up
+                                </NavLink>
+                            </li>
+                        )}
+                        {!user && (
+                            <li className="nav-item mb-1" role="button">
+                                <NavLink className="nav-link" to={'/signin'}>
+                                    Log in{' '}
+                                </NavLink>
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>
         </nav>
     )
