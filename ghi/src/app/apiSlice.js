@@ -51,6 +51,13 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        deleteUser: builder.mutation ({
+            query:() => ({
+                url: "/api/auth/user/delete",
+                method: "DELETE",
+            }),
+            invalidatesTags: ["User"]
+        }),
         teamDetails: builder.query({
             query: (id) => ({
                 url: `/api/teams/${id}`,
@@ -114,4 +121,5 @@ export const {
     useSeatgeekTicketsQuery,
     useVividseatsTicketsQuery,
     useTickpickTicketsQuery,
+    useDeleteUserMutation,
 } = mlbApi
