@@ -4,13 +4,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
-import Signout from './components/SignOut'
 import App from './App'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
 import GamesSchedule from './components/GamesSchedule'
 import GameDetails from './components/GameDetails'
-import Nav from './components/Nav'
 import MainPage from './components/MainPage'
 
 import './index.css'
@@ -49,10 +47,6 @@ const router = createBrowserRouter(
                     ),
                 },
                 {
-                    path: 'signout',
-                    element: <Signout />,
-                },
-                {
                     path: 'games',
                     element: (
                         <Wrapper>
@@ -70,10 +64,8 @@ const router = createBrowserRouter(
                 },
                 {
                     path: '',
-                    element: (
-                        <MainPage />
-                    )
-                }
+                    element: <MainPage />,
+                },
             ],
         },
     ],

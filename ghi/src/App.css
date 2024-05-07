@@ -21,6 +21,10 @@
     text-decoration: none !important;
 }
 
+.navigation-link {
+    text-decoration: none !important;
+}
+
 #signout-button {
     align-self: flex-end;
 }
