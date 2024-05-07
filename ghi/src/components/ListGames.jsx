@@ -46,39 +46,42 @@ export default function ListGames({
 
     return (
         <div>
-            <table>
-                <thead>
+            {/* <table> */}
+                {/* <thead>
                     <tr>
                         <th>Date/Time</th>
                         <th>Teams</th>
                         <th>Location</th>
                         <th>Tickets</th>
                     </tr>
-                </thead>
-                <tbody>
+                </thead> */}
+                {/* <tbody> */}
                     {gamesList.map((game) => {
-                        const handleClick = () => {
-                            setGameID(game.id)
-                        }
                         return (
-                            <tr key={game.id}>
-                                <td>{game.date_time}</td>
-                                <td>{`${game.away_team}@${game.home_team}`}</td>
-                                <td>{game.location}</td>
-                                <td>
-                                    <button
-                                        onClick={() =>
-                                            handleTicketClick(game.id)
-                                        }
-                                    >
-                                        Tickets
-                                    </button>
-                                </td>
-                            </tr>
+                            <div className="card mb-3" key={game.id}>
+                                <div className="row no-gutters">
+                                    <div className="col-sm-3">
+                                        {game.date_time}
+                                    </div>
+                                    <div className="col-sm-5">{`${game.away_team}@${game.home_team}`}</div>
+                                    <div className="col-sm-3">
+                                        {game.location}
+                                    </div>
+                                    <div className="col-sm-1">
+                                        <button
+                                            onClick={() =>
+                                                handleTicketClick(game.id)
+                                            }
+                                        >
+                                            Tickets
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         )
                     })}
-                </tbody>
-            </table>
+                {/* </tbody> */}
+            {/* </table> */}
         </div>
     )
 }

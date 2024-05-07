@@ -12,6 +12,13 @@
     font-size: calc(10px + 2vmin);
 }
 
+.card {
+    background-color: #4917eed6;
+    /* border-color: burlywood; */
+    flex-direction: column;
+    padding: 10px;
+}
+
 #navigation-container {
     background-color: #ff5d3d !important;
     border-color: #ff5d3d !important;

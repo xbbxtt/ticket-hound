@@ -3,7 +3,7 @@ import InputBox from './InputBox'
 
 export default function ScheduleInput({ formData, handleFormChangeFunction }) {
     return (
-        <div className="container-fluid">
+        <div className="container-fluid mb-3">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <InputBox

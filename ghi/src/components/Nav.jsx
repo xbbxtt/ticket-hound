@@ -35,9 +35,9 @@ export default function Nav() {
                             <NavLink className="navbar-brand" to={'/'}>
                                 {' '}
                                 <img
-                                    src="https://i.postimg.cc/MpX0kHgy/Tick-ETHound-3.png"
-                                    width="200"
-                                    height="200"
+                                    src="https://i.postimg.cc/kXPX3pZw/A577-C781-F0-A8-43-EF-9-C9-B-B01687700-DDC-4-5005-c.jpg"
+                                    width="65"
+                                    height="50"
                                 />
                             </NavLink>
                         </li>
@@ -63,7 +63,7 @@ export default function Nav() {
                                 <li className="nav-item mb-1" role="button">
                                     <button
                                         type="button"
-                                        class="btn btn-primary btn-lg"
+                                        class="btn btn-primary btn-md"
                                         onClick={handleLogOut}
                                     >
                                         Logout
