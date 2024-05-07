@@ -49,3 +49,15 @@
     padding: 40px;
     margin-top: 200px;
 }
+
+#profile-card {
+    background-color: red;
+    color: ywhite;
+    margin-top: 40px;
+}
+
+.lexend-deca-uniquifier {
+  font-family: "Lexend Deca", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
