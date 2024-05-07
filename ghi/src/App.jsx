@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import ErrorNotification from './components/ErrorNotification'
 import Nav from './components/Nav'
+import Footer from './components/Footer'
 
 import './App.css'
 
@@ -18,10 +19,15 @@ function App() {
     const [error, setError] = useState(null)
 
     return (
-        <div className="App">
-            <header className="App-header"><Nav /></header>
+        <div className="container-fluid" className="App">
+            <header className="App-header">
+                <Nav />
+            </header>
             <Outlet />
             <ErrorNotification error={error} />
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 }

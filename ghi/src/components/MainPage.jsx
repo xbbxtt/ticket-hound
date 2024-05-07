@@ -68,6 +68,7 @@ export default function GamesSchedule() {
     }
     return (
         <>
+        <div className="container-fluid">
             <button onClick = {() => navigate('/games')}>
                 Find More Games!
             </button>
@@ -82,6 +83,7 @@ export default function GamesSchedule() {
                 />
             )}
             {errorMessage && <ErrorNotification error={errorMessage} />}
+        </div>
         </>
     )
 }

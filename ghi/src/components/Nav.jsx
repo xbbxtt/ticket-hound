@@ -33,7 +33,12 @@ export default function Nav() {
                     <ul className="navbar-nav me-auto mb-2">
                         <li className="nav-item nav-link" role="button">
                             <NavLink className="navbar-brand" to={'/'}>
-                                Ticket Hound
+                                {' '}
+                                <img
+                                    src="https://i.postimg.cc/MpX0kHgy/Tick-ETHound-3.png"
+                                    width="200"
+                                    height="200"
+                                />
                             </NavLink>
                         </li>
                         {user && (

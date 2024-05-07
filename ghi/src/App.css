@@ -2,7 +2,7 @@
 
 .App {
     text-align: center;
-    background-color: #2c409e;
+    background-color: #4917eed6;
     min-height: 100vh;
     color: white;
     /* display: flex;
@@ -34,3 +34,11 @@
 } */
 
 /* This is the color we want to use #ff5d3d */
+
+#footer {
+
+    height: 100px;
+    color: #FFFFFF;
+    padding: 40px;
+    margin-top: 200px;
+}
