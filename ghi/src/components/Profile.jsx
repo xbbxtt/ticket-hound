@@ -5,11 +5,17 @@ import { useEffect, useState } from 'react'
 export default function Profile() {
     const { data: user, isLoading: isLoadingUser } =
         mlbApi.useAuthenticateQuery()
+
+
+    const [deleteUser, deleteUserStatus] = mlbApi.useDeleteUserMutation()
+    const [error, setErrorMessage] = useState('')
+
     const navigate = useNavigate()
     const [trigger, result] = mlbApi.useLazyTeamDetailsQuery(
         user?.favorite_team_id
     )
     const [teamName, setTeamName] = useState()
+
 
     useEffect(() => {
         if (!user && !isLoadingUser) {
@@ -21,6 +27,25 @@ export default function Profile() {
     useEffect(() => {
         if (result.isSuccess) setTeamName(result.data)
     }, [result])
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        deleteUser()
+
+    }
+
+    useEffect (() => {
+
+        if (deleteUserStatus.isSuccess) {
+            navigate('/')
+
+        } else if (deleteUserStatus.isError) {
+            setErrorMessage('')
+
+        }
+
+
+    }, [deleteUserStatus, navigate])
 
     if (isLoadingUser) {
         return <div>Loading...</div>
@@ -58,6 +83,7 @@ export default function Profile() {
                 </tbody>
             </table>
             <button onClick={() => navigate('/edit')}>Edit Profile</button>
+            <button onClick={handleDelete}>Delete Profile</button>
         </div>
     )
 }

@@ -50,7 +50,10 @@ export default function SignInForm() {
                 />
                 <button type="submit">Sign In</button>
             </form>
-            <NavLink to="/signup" className= "">Don't have an account? Sign up here!</NavLink>
+            Don't have an account?
+            <NavLink to="/signup" className="">
+                 Sign up here!
+            </NavLink>
         </>
     )
 }
