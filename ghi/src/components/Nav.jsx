@@ -43,20 +43,14 @@ export default function Nav() {
                         </li>
                         {user && (
                             <li className="nav-item mb-1" role="button">
-                                <NavLink
-                                    className="nav-link russo-one-regular"
-                                    to={'/games'}
-                                >
+                                <NavLink className="nav-link" to={'/games'}>
                                     Games
                                 </NavLink>
                             </li>
                         )}
                         {user && (
                             <li className="nav-item mb-1" role="button">
-                                <NavLink
-                                    className="nav-link russo-one-regular"
-                                    to={'/profile'}
-                                >
+                                <NavLink className="nav-link" to={'/profile'}>
                                     Profile
                                 </NavLink>
                             </li>
@@ -69,7 +63,7 @@ export default function Nav() {
                                 <div id="signout-button">
                                     <button
                                         type="button"
-                                        className="btn btn-primary btn-lg russo-one-regular"
+                                        className="btn btn-primary btn-lg"
                                         onClick={handleLogOut}
                                     >
                                         Logout

@@ -32,9 +32,10 @@ form {
 }
 
 #navigation-container {
-    background-color: #fc4100 !important;
-    border-color: #fc4100 !important;
+    background-color: #00215e !important;
+    border-color: #00215e !important;
     width: 100%;
+    color: white !important;
 }
 nav {
     width: 100%;
