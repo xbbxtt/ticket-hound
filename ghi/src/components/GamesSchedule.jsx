@@ -73,13 +73,18 @@ export default function GamesSchedule() {
     }
     return (
         <>
+            <h2 className="p-4 h2 mb-3 russo-one-regular">Search Upcoming Games!</h2>
             {teamName && (
-                <form>
-                    <ScheduleInput
-                        formData={formData}
-                        handleFormChangeFunction={handleFormChange}
-                    />
-                </form>
+                <div className="container-fluid mb-3">
+                    <div className="card offset-3 col-6 container-darkblue shadow">
+                        <form>
+                            <ScheduleInput
+                                formData={formData}
+                                handleFormChangeFunction={handleFormChange}
+                            />
+                        </form>
+                    </div>
+                </div>
             )}
             {displayTeamsList && (
                 <ListGames

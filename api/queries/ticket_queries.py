@@ -46,7 +46,7 @@ class VividseatsTicketQueries:
                     url = event["competitions"][0]["tickets"][0]["links"][0][
                         "href"
                     ]
-                    logo = "https://1000logos.net/wp-content/uploads/2023/11/Vivid-Seats-Logo.png"
+                    logo = "https://i.postimg.cc/nh8WhhP7/Vivid-Seats-Logo.jpg"
                     provider_name = "VividSeats"
                     return TicketOut(
                         min_price=min_price,
@@ -84,7 +84,9 @@ class SeatgeekTicketQueries:
                 if event["datetime_utc"] == date_time:
                     min_price = str(event["stats"]["lowest_sg_base_price"])
                     url = event["url"]
-                    logo = "https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2funcc.sidearmsports.com%2fimages%2f2023%2f8%2f24%2fColor_Gatorade_Inline_bQU5r.png&width=1416&type=png"
+                    logo = (
+                        "https://i.postimg.cc/gjn7nXpy/logos-seatgeek-2x.jpg"
+                    )
                     provider_name = "SeatGeek"
                     return TicketOut(
                         min_price=min_price,
@@ -118,7 +120,7 @@ class TickpickTicketQueries:
             results = soup.find_all(
                 "div", class_="srItem active allE SPORTSE hasPromos"
             )
-            
+
             results_without_promos = soup.find_all(
                 "div", class_="srItem active allE SPORTSE"
             )
@@ -144,7 +146,7 @@ class TickpickTicketQueries:
                 if data["startDate"][:10] == date_time[:10]:
                     min_price = data["offers"]["lowPrice"]
                     url = data["offers"]["url"]
-                    logo = "https://sportsandentertainmenttravel.com/wp-content/uploads/2019/02/TickPick-Logo-300x300.png"
+                    logo = "https://i.postimg.cc/6qgmRW6k/Tick-Pick-Logo.jpg"
                     provider_name = "TickPick"
 
                     return TicketOut(

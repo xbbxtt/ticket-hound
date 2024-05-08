@@ -24,11 +24,6 @@ export default function GameDetails() {
                 <div className="row">
                     <div className="col-9">
                         <div className="card mb">
-                            {/* <div>
-                                <div>{gameData.location}</div>
-                                <div>{gameData.game_date.slice(11, 19)}</div>
-                                <div>{gameData.game_date.slice(0, 10)}</div>
-                            </div> */}
                             <div>
                                 <div>
                                     <GetSeatgeekTickets

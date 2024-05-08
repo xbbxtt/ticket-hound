@@ -46,42 +46,34 @@ export default function ListGames({
 
     return (
         <div>
-            {/* <table> */}
-                {/* <thead>
-                    <tr>
-                        <th>Date/Time</th>
-                        <th>Teams</th>
-                        <th>Location</th>
-                        <th>Tickets</th>
-                    </tr>
-                </thead> */}
-                {/* <tbody> */}
-                    {gamesList.map((game) => {
-                        return (
-                            <div className="card mb-3" key={game.id}>
-                                <div className="row no-gutters">
-                                    <div className="col-sm-3">
-                                        {game.date_time}
-                                    </div>
-                                    <div className="col-sm-5">{`${game.away_team}@${game.home_team}`}</div>
-                                    <div className="col-sm-3">
-                                        {game.location}
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <button
-                                            onClick={() =>
-                                                handleTicketClick(game.id)
-                                            }
-                                        >
-                                            Tickets
-                                        </button>
-                                    </div>
-                                </div>
+            {gamesList.map((game) => {
+                return (
+                    <div
+                        className="card mb-3 russo-one-regular"
+                        key={game.id}
+                    >
+                        <div className="row no-gutters">
+                            <div className="col-sm-3">
+                                {game.date_time}
                             </div>
-                        )
-                    })}
-                {/* </tbody> */}
-            {/* </table> */}
+                            <div className="col-sm-5">{`${game.away_team} @ ${game.home_team}`}</div>
+                            <div className="col-sm-3">
+                                {game.location}
+                            </div>
+                            <div className="col-sm-1">
+                                <button
+                                    className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                                    onClick={() =>
+                                        handleTicketClick(game.id)
+                                    }
+                                >
+                                    Tickets
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
         </div>
     )
 }

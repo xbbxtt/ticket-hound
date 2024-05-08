@@ -5,6 +5,7 @@ import ErrorNotification from './ErrorNotification'
 
 export default function GamesSchedule() {
     const todaysDate = new Date()
+    todaysDate.setDate(todaysDate.getDate() + 1)
     const todaysFormattedDate = todaysDate.toJSON().slice(0, 10)
     todaysDate.setDate(todaysDate.getDate() + 7)
     const endFormattedDate = todaysDate.toJSON().slice(0, 10)
@@ -23,7 +24,9 @@ export default function GamesSchedule() {
     return (
         <>
             <div className="container-fluid">
-                <h2 className='p-4 h2 mb-3 russo-one-regular'>Upcoming Games...</h2>
+                <h2 className="p-4 h2 mb-3 russo-one-regular">
+                    Upcoming Games...
+                </h2>
                 <ListGames
                     startDate={formData.start_date}
                     endDate={formData.end_date}
@@ -34,7 +37,7 @@ export default function GamesSchedule() {
                 />
                 {errorMessage && <ErrorNotification error={errorMessage} />}
                 <button
-                    className="btn-success btn-md"
+                    className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
                     onClick={() => navigate('/games')}
                 >
                     Find More Games!
