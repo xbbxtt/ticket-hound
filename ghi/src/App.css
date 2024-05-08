@@ -32,7 +32,7 @@ form {
 }
 
 #navigation-container {
-    background-color: #00215e !important;
+    background-image: linear-gradient(to right, #fc4100, #ffc55a) !important;
     border-color: #00215e !important;
     width: 100%;
     color: white !important;
@@ -42,6 +42,8 @@ nav {
 }
 .nav-item {
     text-decoration: none !important;
+    font-weight: bold;
+    font-size: x-large;
 }
 
 .navigation-link {
@@ -66,7 +68,7 @@ nav {
     color: #2c4e80;
     padding: 40px;
     margin-top: 200px;
-    background-color: #fc4100;
+    background-image: linear-gradient(to right, #ffc55a, #fc4100) !important;
 }
 
 #profile-card {
