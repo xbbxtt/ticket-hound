@@ -61,6 +61,8 @@ export default function ListGames({
                     minute: '2-digit',
                 })
                 const formattedTime = formatter.format(date)
+                const current_date = new Date()
+                if (current_date > date) return
                 return (
                     <div className="card mb-3 russo-one-regular" key={game.id}>
                         <div className="row no-gutters">

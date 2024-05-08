@@ -30,7 +30,7 @@ export default function GameDetails() {
             <div id="detail-parent">
                 <div className="row">
                     <div className="col-9">
-                        <div className="card mb">
+                        <div className="card mb ticket-card">
                             <div>
                                 <div>
                                     <GetSeatgeekTickets
@@ -56,7 +56,7 @@ export default function GameDetails() {
                         </div>
                     </div>
                     <div className="col-3">
-                        <div className="card mb">
+                        <div className="card mb-1 row-3">
                             <div>
                                 <div>{gameData.location}</div>
                                 <div>{formattedTime}</div>
