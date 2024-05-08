@@ -24,7 +24,7 @@ export default function Nav() {
         mlbApi.useAuthenticateQuery()
 
     return (
-         <nav
+        <nav
             className="navbar navbar-expand-lg navbar bg-success"
             id="navigation-container"
         >
@@ -35,8 +35,8 @@ export default function Nav() {
                             <NavLink className="navbar-brand" to={'/'}>
                                 {' '}
                                 <img
-                                    src="https://i.postimg.cc/kXPX3pZw/A577-C781-F0-A8-43-EF-9-C9-B-B01687700-DDC-4-5005-c.jpg"
-                                    width="65"
+                                    src="https://i.postimg.cc/26wY4BgP/38856257-DD64-4893-A92-F-34-FDFB106-B08-4-5005-c.jpg"
+                                    width="75"
                                     height="50"
                                 />
                             </NavLink>
@@ -62,19 +62,20 @@ export default function Nav() {
                             </li>
                         )}
                         {user && (
-                                <li className="nav-item mr-4b logout-button" role="button">
-                                    <div
-                                        id="signout-button"
+                            <li
+                                className="nav-item mr-4b logout-button"
+                                role="button"
+                            >
+                                <div id="signout-button">
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary btn-lg russo-one-regular"
+                                        onClick={handleLogOut}
                                     >
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary btn-lg"
-                                            onClick={handleLogOut}
-                                        >
-                                            Logout
-                                        </button>
-                                    </div>
-                                </li>
+                                        Logout
+                                    </button>
+                                </div>
+                            </li>
                         )}
                         {!user && (
                             <li className="nav-item mb-1" role="button">
@@ -93,76 +94,6 @@ export default function Nav() {
                     </ul>
                 </div>
             </div>
-            </nav>
+        </nav>
     )
 }
-
-//  ;<div className="container-fluid text-center">
-//      <div class="row align-items-start">
-//          <div class="col-9 gap-2 d-md-flex justify-content-md-right">
-//              <div className="row">
-//                  <ul className="navbar-nav me-auto mb-2">
-//                      <li className="nav-item nav-link" role="button">
-//                          <NavLink className="navbar-brand" to={'/'}>
-//                              {' '}
-//                              <img
-//                                  src="https://i.postimg.cc/kXPX3pZw/A577-C781-F0-A8-43-EF-9-C9-B-B01687700-DDC-4-5005-c.jpg"
-//                                  width="65"
-//                                  height="50"
-//                              />
-//                          </NavLink>
-//                      </li>
-//                      {user && (
-//                          <li className="nav-item mb-1" role="button">
-//                              <NavLink className="nav-link" to={'/games'}>
-//                                  Games
-//                              </NavLink>
-//                          </li>
-//                      )}
-//                      {user && (
-//                          <li className="nav-item mb-1" role="button">
-//                              <NavLink className="nav-link" to={'/profile'}>
-//                                  Profile
-//                              </NavLink>
-//                          </li>
-//                      )}
-
-//                      {!user && (
-//                          <li className="nav-item mb-1" role="button">
-//                              <NavLink className="nav-link" to={'/signup'}>
-//                                  Sign Up
-//                              </NavLink>
-//                          </li>
-//                      )}
-//                      {!user && (
-//                          <li className="nav-item mb-1" role="button">
-//                              <NavLink className="nav-link" to={'/signin'}>
-//                                  Log in{' '}
-//                              </NavLink>
-//                          </li>
-//                      )}
-//                  </ul>
-//              </div>
-//          </div>
-//          {/* <div class="col-3 d-grid gap-2 d-md-flex justify-content-md-end"> */}
-//          {user && (
-//              <div
-//                  class="d-grid gap-2 d-md-flex justify-content-md-end"
-//                  id="signout-button"
-//              >
-//                  <ul className="navbar-nav me-auto mb-2">
-//                      <li className="nav-item mb-3" role="button">
-//                          <button
-//                              type="button"
-//                              class="btn btn-primary btn-md"
-//                              onClick={handleLogOut}
-//                          >
-//                              Logout
-//                          </button>
-//                      </li>
-//                  </ul>
-//              </div>
-//          )}
-//          {/* </div> */}
-//      </div>
-//  </div>

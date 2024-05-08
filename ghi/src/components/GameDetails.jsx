@@ -15,6 +15,13 @@ export default function GameDetails() {
 
     if (gameIsLoading) return <div>Loading...</div>
 
+    const date = new Date(gameData.game_date)
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+    })
+    const formattedTime = formatter.format(date)
+
     return (
         <div className="container-fluid">
             <div className="mb-3">
@@ -52,8 +59,8 @@ export default function GameDetails() {
                         <div className="card mb">
                             <div>
                                 <div>{gameData.location}</div>
-                                <div>{gameData.game_date.slice(11, 19)}</div>
-                                <div>{gameData.game_date.slice(0, 10)}</div>
+                                <div>{formattedTime}</div>
+                                <div>{date.toDateString()}</div>
                             </div>
                         </div>
                     </div>

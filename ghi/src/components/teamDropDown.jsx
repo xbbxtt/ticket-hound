@@ -14,6 +14,7 @@ const TeamDropDown = ({
     return (
         <div className="mb-2">
             <select
+                id={name}
                 name={name}
                 value={value}
                 onChange={onChangeFunction}

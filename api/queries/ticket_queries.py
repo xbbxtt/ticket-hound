@@ -41,7 +41,7 @@ class VividseatsTicketQueries:
             for event in json_data["events"]:
                 if (event["date"][:-1]) == (date_time[:-4]):
                     min_price = str(
-                        event["competitions"][0]["tickets"][0]["startingPrice"]
+                        int(event["competitions"][0]["tickets"][0]["startingPrice"])
                     )
                     url = event["competitions"][0]["tickets"][0]["links"][0][
                         "href"

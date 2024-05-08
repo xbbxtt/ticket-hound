@@ -38,7 +38,15 @@ export default function ListGames({
                 setGamesList([...gamesData])
             }
         }
-    }, [isGamesLoading, setGamesList, gamesData, isError, error, setError, limit])
+    }, [
+        isGamesLoading,
+        setGamesList,
+        gamesData,
+        isError,
+        error,
+        setError,
+        limit,
+    ])
 
     if (isGamesLoading) return <div>Loading...</div>
 
@@ -47,25 +55,22 @@ export default function ListGames({
     return (
         <div>
             {gamesList.map((game) => {
+                const date = new Date(game.date_time)
+                const formatter = new Intl.DateTimeFormat('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                })
+                const formattedTime = formatter.format(date)
                 return (
-                    <div
-                        className="card mb-3 russo-one-regular"
-                        key={game.id}
-                    >
+                    <div className="card mb-3 russo-one-regular" key={game.id}>
                         <div className="row no-gutters">
-                            <div className="col-sm-3">
-                                {game.date_time}
-                            </div>
+                            <div className="col-sm-3">{`${date.toDateString()} at ${formattedTime}`}</div>
                             <div className="col-sm-5">{`${game.away_team} @ ${game.home_team}`}</div>
-                            <div className="col-sm-3">
-                                {game.location}
-                            </div>
+                            <div className="col-sm-3">{game.location}</div>
                             <div className="col-sm-1">
                                 <button
                                     className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
-                                    onClick={() =>
-                                        handleTicketClick(game.id)
-                                    }
+                                    onClick={() => handleTicketClick(game.id)}
                                 >
                                     Tickets
                                 </button>

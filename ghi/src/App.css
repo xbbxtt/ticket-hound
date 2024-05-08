@@ -31,7 +31,6 @@ form {
 
 .card {
     background-color: #00215E;
-    /* border-color: burlywood; */
     flex-direction: column;
     padding: 10px;
 }
