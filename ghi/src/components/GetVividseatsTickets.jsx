@@ -2,10 +2,22 @@ import { Link } from 'react-router-dom'
 import { mlbApi } from '../app/apiSlice'
 
 export default function GetVividseatsTickets(awayTeam, homeTeam, dateTime) {
-    const { data: ticketData, isLoading: isTicketLoading } =
-        mlbApi.useVividseatsTicketsQuery(awayTeam, homeTeam, dateTime)
+    const {
+        data: ticketData,
+        isLoading: isTicketLoading,
+        error,
+        isError,
+    } = mlbApi.useVividseatsTicketsQuery(awayTeam, homeTeam, dateTime)
+    const [errorMessage, setErrorMessage] = useState('')
+
+    useEffect(() => {
+        if (isError) {
+            setErrorMessage(error.data.detail)
+        }
+    }, [error, isError, setErrorMessage, isTicketLoading])
 
     if (isTicketLoading) return <div>Loading...</div>
+    if (error) return <ErrorNotification error={errorMessage} />
 
     return (
         <div className="card mb-3">
