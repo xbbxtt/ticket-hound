@@ -43,33 +43,39 @@ export default function Nav() {
                         </li>
                         {user && (
                             <li className="nav-item mb-1" role="button">
-                                <NavLink className="nav-link" to={'/games'}>
+                                <NavLink
+                                    className="nav-link russo-one-regular"
+                                    to={'/games'}
+                                >
                                     Games
                                 </NavLink>
                             </li>
                         )}
                         {user && (
                             <li className="nav-item mb-1" role="button">
-                                <NavLink className="nav-link" to={'/profile'}>
+                                <NavLink
+                                    className="nav-link russo-one-regular"
+                                    to={'/profile'}
+                                >
                                     Profile
                                 </NavLink>
                             </li>
                         )}
                         {user && (
-                            <div
-                                class="d-grid gap-2 d-md-flex justify-content-md-end"
-                                id="signout-button"
-                            >
                                 <li className="nav-item mb-3" role="button">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary btn-md"
-                                        onClick={handleLogOut}
+                                    <div
+                                        className="d-grid gap-2 d-md-flex justify-self-end"
+                                        id="signout-button"
                                     >
-                                        Logout
-                                    </button>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary btn-md"
+                                            onClick={handleLogOut}
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
                                 </li>
-                            </div>
                         )}
                         {!user && (
                             <li className="nav-item mb-1" role="button">

@@ -2,7 +2,7 @@
 
 .App {
     text-align: center;
-    background-color: #4917eed6;
+    background-color: #2C4E80;
     min-height: 100vh;
     color: white;
     /* display: flex;
@@ -13,23 +13,32 @@
 }
 
 .btn-success {
-    background-color: #ff5d3d !important;
+    background-color: #fc4100 !important;
+    border-color: #fc4100;
 }
 
 #detail-parent {
     flex-direction: row;
 }
 
+.container-darkblue {
+    background-color: #00215E;
+}
+
+form {
+    background-color: #00215E;
+}
+
 .card {
-    background-color: #4917eed6;
+    background-color: #00215E;
     /* border-color: burlywood; */
     flex-direction: column;
     padding: 10px;
 }
 
 #navigation-container {
-    background-color: #ff5d3d !important;
-    border-color: #ff5d3d !important;
+    background-color: #fc4100 !important;
+    border-color: #fc4100 !important;
 }
 
 .nav-item {
@@ -53,15 +62,15 @@
 #footer {
 
     height: 100px;
-    color: #FFFFFF;
+    color: #2C4E80;
     padding: 40px;
     margin-top: 200px;
-    background-color: #ff5d3d;
+    background-color: #fc4100;
 }
 
 #profile-card {
     background-color: black;
-    color: white;
+    color: #FFC55A;
     margin-top: 40px;
 }
 

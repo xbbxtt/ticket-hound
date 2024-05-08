@@ -59,72 +59,86 @@ export default function EditProfile() {
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            {errorMessage && <ErrorNotification error={errorMessage} />}
-            <div>
-                <InputBox
-                    title="Password: "
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleFormChange}
-                    placeholder="Password"
-                />
+        <div className="container">
+            <h2 className="p-4 russo-one-regular">Edit Profile</h2>
+            <div className="card col col-span-6 shadow">
+                <form onSubmit={handleFormSubmit}>
+                    {errorMessage && <ErrorNotification error={errorMessage} />}
+                    <div>
+                        <InputBox
+                            title="Password: "
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleFormChange}
+                            placeholder="Password"
+                        />
+                    </div>
+                    <div>
+                        <InputBox
+                            title="Confirm Password: "
+                            type="password"
+                            name="password_confirmation"
+                            value={passwordConfirmation}
+                            onChange={handlePasswordConfirmationChange}
+                            placeholder="Confirm Password"
+                        />
+                    </div>
+                    <div>
+                        <InputBox
+                            title="First Name: "
+                            type="text"
+                            name="first_name"
+                            value={formData.first_name}
+                            onChange={handleFormChange}
+                        />
+                    </div>
+                    <div>
+                        <InputBox
+                            title="Last Name: "
+                            type="text"
+                            name="last_name"
+                            value={formData.last_name}
+                            onChange={handleFormChange}
+                            placeholder="Enter Last Name"
+                        />
+                    </div>
+                    <div>
+                        <InputBox
+                            title="Address: "
+                            type="text"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleFormChange}
+                            placeholder="Enter Address"
+                        />
+                    </div>
+                    <div>
+                        <InputBox
+                            title="Birthday: "
+                            type="date"
+                            name="birthday"
+                            value={formData.birthday}
+                            onChange={handleFormChange}
+                            placeholder=""
+                        />
+                    </div>
+                    <label htmlFor="favorite_team_id">Favorite Team:</label>
+                    <TeamDropDown
+                        name="favorite_team_id"
+                        value={formData.favorite_team_id}
+                        onChangeFunction={handleFormChange}
+                    />
+                    <div className="p-4">
+                        <button
+                            className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                            type="submit"
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div>
-                <InputBox
-                    title="Confirm Password: "
-                    type="password"
-                    name="password_confirmation"
-                    value={passwordConfirmation}
-                    onChange={handlePasswordConfirmationChange}
-                    placeholder="Confirm Password"
-                />
-            </div>
-            <div>
-                <InputBox
-                    title="First Name: "
-                    type="text"
-                    name="first_name"
-                    value={formData.first_name}
-                    onChange={handleFormChange}
-                />
-            </div>
-            <div>
-                <InputBox
-                    title="Last Name: "
-                    type="text"
-                    name="last_name"
-                    value={formData.last_name}
-                    onChange={handleFormChange}
-                    placeholder="Enter Last Name"
-                />
-            </div>
-            <div>
-                <InputBox
-                    title="Address: "
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleFormChange}
-                    placeholder="Enter Address"
-                />
-            </div>
-            <div>
-                <InputBox
-                    title="Birthday: "
-                    type="date"
-                    name="birthday"
-                    value={formData.birthday}
-                    onChange={handleFormChange}
-                    placeholder=""
-                />
-            </div>
-            <TeamDropDown
-                value={formData.favorite_team_id}
-                onChangeFunction={handleFormChange}
-            />
-            <button type="submit">Confirm</button>
-        </form>
+        </div>
     )
 }

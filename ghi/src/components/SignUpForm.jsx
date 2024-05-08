@@ -62,7 +62,7 @@ export default function SignUpForm() {
 
     return (
         <div className="container-fluid">
-            <div className="offset-3 col-6">
+            <div className="offset-3 col-6 container-darkblue">
                 <div className="shadow p-4 mt-4">
                     <form onSubmit={handleFormSubmit}>
                         {errorMessage && (
@@ -138,11 +138,18 @@ export default function SignUpForm() {
                                 placeholder=""
                             />
                         </div>
+                        <label className='mb-3' htmlFor='favorite_team_id'>Favorite Team:</label>
                         <TeamDropDown
+                            name='favorite_team_id'
                             value={formData.favorite_team_id}
                             onChangeFunction={handleFormChange}
                         />
-                        <button type="submit">Sign Up</button>
+                        <button
+                            className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                            type="submit"
+                        >
+                            Sign Up
+                        </button>
                     </form>
                 </div>
             </div>

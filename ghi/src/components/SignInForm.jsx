@@ -30,7 +30,7 @@ export default function SignInForm() {
 
     return (
         <div className="container-fluid">
-            <div className="offset-3 col-6">
+            <div className="offset-3 col-6 container-darkblue">
                 <div className="shadow p-4 mt-4">
                     <form onSubmit={handleFormSubmit}>
                         {errorMessage && (
@@ -52,7 +52,12 @@ export default function SignInForm() {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter Password"
                         />
-                        <button type="submit">Sign In</button>
+                        <button
+                            className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                            type="submit"
+                        >
+                            Sign In
+                        </button>
                     </form>
                     Don't have an account?
                     <NavLink to="/signup" className="navigation-link">
