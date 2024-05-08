@@ -60,7 +60,7 @@ export default function Nav() {
                                 class="d-grid gap-2 d-md-flex justify-content-md-end"
                                 id="signout-button"
                             >
-                                <li className="nav-item mb-1" role="button">
+                                <li className="nav-item mb-3" role="button">
                                     <button
                                         type="button"
                                         class="btn btn-primary btn-md"

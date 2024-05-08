@@ -23,21 +23,25 @@ export default function GetTickpickTickets(homeTeam, dateTime) {
     if (error) return <ErrorNotification error={errorMessage} />
 
     return (
-        <div>
-            <div>
-                <img
-                    src={ticketData.logo}
-                    alt={ticketData.provider_name}
-                    width="200"
-                    height="100"
-                />
+        <div className="card mb-3">
+            <div className="row no-gutters">
+                <div className="col-sm-4">
+                    <img
+                        src={ticketData.logo}
+                        alt={ticketData.provider_name}
+                        width="200"
+                        height="100"
+                    />
+                </div>
+                <div className="col-sm-4">${ticketData.min_price}</div>
+                <div className="col-sm-4">
+                    <Link type="button" to={ticketData.url} target="_blank">
+                        <button className="btn btn-success mx-2 btn-lg">
+                            Ticket
+                        </button>
+                    </Link>
+                </div>
             </div>
-            <div>
-                <Link to={ticketData.url} target="_blank">
-                    Ticket
-                </Link>
-            </div>
-            <div>{ticketData.min_price}</div>
         </div>
     )
 }

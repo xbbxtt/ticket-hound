@@ -1,4 +1,4 @@
-/* You should probably replace this with your own CSS */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Russo+One&display=swap');
 
 .App {
     text-align: center;
@@ -10,6 +10,14 @@
     align-items: center;
     justify-content: center; */
     font-size: calc(10px + 2vmin);
+}
+
+.btn-success {
+    background-color: #ff5d3d !important;
+}
+
+#detail-parent {
+    flex-direction: row;
 }
 
 .card {
@@ -48,16 +56,17 @@
     color: #FFFFFF;
     padding: 40px;
     margin-top: 200px;
+    background-color: #ff5d3d;
 }
 
 #profile-card {
-    background-color: red;
-    color: ywhite;
+    background-color: black;
+    color: white;
     margin-top: 40px;
 }
 
-.lexend-deca-uniquifier {
-  font-family: "Lexend Deca", sans-serif;
-  font-optical-sizing: auto;
+.russo-one-regular {
+  font-family: "Russo One", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }

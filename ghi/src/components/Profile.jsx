@@ -65,14 +65,14 @@ export default function Profile() {
                     <div>
                         <button
                             type="button"
-                            class="btn btn-secondary mx-2 btn-lg"
+                            className="btn btn-secondary mx-2 btn-lg"
                             onClick={() => navigate('/edit')}
                         >
                             Edit Profile
                         </button>
                         <button
                             type="button"
-                            class="btn btn-danger mx-2 btn-lg"
+                            className="btn btn-danger mx-2 btn-lg"
                             onClick={handleDelete}
                         >
                             Delete Profile
