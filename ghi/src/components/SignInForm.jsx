@@ -29,31 +29,42 @@ export default function SignInForm() {
     }
 
     return (
-        <>
-            <form onSubmit={handleFormSubmit}>
-                {errorMessage && <ErrorNotification error={errorMessage} />}
-                <InputBox
-                    title="Email: "
-                    type="text"
-                    name="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Enter Email"
-                />
-                <InputBox
-                    title="Password: "
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter Password"
-                />
-                <button type="submit">Sign In</button>
-            </form>
-            Don't have an account?
-            <NavLink to="/signup" className="">
-                 Sign up here!
-            </NavLink>
-        </>
+        <div className="container-fluid">
+            <div className="offset-3 col-6 container-darkblue">
+                <div className="shadow p-4 mt-4">
+                    <form onSubmit={handleFormSubmit}>
+                        {errorMessage && (
+                            <ErrorNotification error={errorMessage} />
+                        )}
+                        <InputBox
+                            title="Email: "
+                            type="text"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter Email"
+                        />
+                        <InputBox
+                            title="Password: "
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter Password"
+                        />
+                        <button
+                            className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                            type="submit"
+                        >
+                            Sign In
+                        </button>
+                    </form>
+                    Don't have an account?
+                    <NavLink to="/signup" className="navigation-link">
+                        Sign up here!
+                    </NavLink>
+                </div>
+            </div>
+        </div>
     )
 }

@@ -12,14 +12,18 @@ const TeamDropDown = ({
         return <div>Loading...</div>
     }
     return (
-        <div>
+        <div className="mb-2">
             <select
+                id={name}
                 name={name}
                 value={value}
                 onChange={onChangeFunction}
                 required
+                className="form-select"
             >
-                <option value="" defaultValue="">Choose a Team!</option>
+                <option value="" defaultValue="">
+                    Choose a Team!
+                </option>
                 {teamData.map((team) => {
                     return (
                         <option key={team.id} value={team.id}>

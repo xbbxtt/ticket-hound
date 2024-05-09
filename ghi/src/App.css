@@ -1,13 +1,102 @@
-/* You should probably replace this with your own CSS */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Russo+One&display=swap');
 
 .App {
     text-align: center;
-    background-color: #282c34;
+    background-color: #2c4e80;
     min-height: 100vh;
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-size: calc(10px + 2vmin);
+}
+
+.btn-success {
+    background-color: #fc4100 !important;
+    border-color: #fc4100;
+}
+
+#detail-parent {
+    flex-direction: row;
+}
+
+.container-darkblue {
+    background-color: #00215e;
+}
+
+form {
+    background-color: #00215e;
+}
+
+.card {
+    background-color: #00215e;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#navigation-container {
+    background-image: linear-gradient(to right, #fc4100, #ffc55a) !important;
+    border-color: #00215e !important;
+    width: 100%;
+    color: white !important;
+}
+nav {
+    width: 100%;
+}
+.nav-item {
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.navigation-link {
+    text-decoration: none !important;
+}
+
+#signout-button {
+    align-self: flex-end;
+}
+
+.logout-button {
+    position: absolute;
+    right: 5%;
+}
+
+/* .btn-primary {
+    background-color: #2c409e !important;
+} */
+
+#footer {
+    height: 100px;
+    color: #2c4e80;
+    padding: 40px;
+    margin-top: 200px;
+    background-image: linear-gradient(to right, #ffc55a, #fc4100) !important;
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+}
+
+#profile-card {
+    background-color: black;
+    color: #ffc55a;
+    margin-top: 40px;
+}
+
+#games-list-container {
+    padding-bottom: 5%;
+}
+
+.russo-one-regular {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ticket-card {
+    background-color: #2c4e80;
+    border-color: #2c4e80;
+}
+
+.card > div {
+    justify-content: center;
+    align-items: center;
 }

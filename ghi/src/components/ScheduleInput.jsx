@@ -3,14 +3,14 @@ import InputBox from './InputBox'
 
 export default function ScheduleInput({ formData, handleFormChangeFunction }) {
     return (
-        <>
+        <div className="shadow p-2">
             <InputBox
                 type="date"
                 name="start_date"
                 value={formData.start_date}
                 onChange={handleFormChangeFunction}
                 placeholder=""
-                title="Start Date"
+                title="Start Date:"
             />
             <InputBox
                 type="date"
@@ -18,20 +18,20 @@ export default function ScheduleInput({ formData, handleFormChangeFunction }) {
                 value={formData.end_date}
                 onChange={handleFormChangeFunction}
                 placeholder=""
-                title="End Date"
+                title="End Date:"
             />
-            <label htmlFor="away_team">Away Team</label>
+            <label htmlFor="away_team">Away Team:</label>
             <TeamDropDown
                 name="away_team"
                 value={formData.away_team}
                 onChangeFunction={handleFormChangeFunction}
             />
-            <label htmlFor="home_team">Home Team</label>
+            <label htmlFor="home_team">Home Team:</label>
             <TeamDropDown
                 name="home_team"
                 value={formData.home_team}
                 onChangeFunction={handleFormChangeFunction}
             />
-        </>
+        </div>
     )
 }

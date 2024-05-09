@@ -38,47 +38,49 @@ export default function ListGames({
                 setGamesList([...gamesData])
             }
         }
-    }, [isGamesLoading, setGamesList, gamesData, isError, error, setError, limit])
+    }, [
+        isGamesLoading,
+        setGamesList,
+        gamesData,
+        isError,
+        error,
+        setError,
+        limit,
+    ])
 
     if (isGamesLoading) return <div>Loading...</div>
 
     if (error) return
 
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date/Time</th>
-                        <th>Teams</th>
-                        <th>Location</th>
-                        <th>Tickets</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {gamesList.map((game) => {
-                        const handleClick = () => {
-                            setGameID(game.id)
-                        }
-                        return (
-                            <tr key={game.id}>
-                                <td>{game.date_time}</td>
-                                <td>{`${game.away_team}@${game.home_team}`}</td>
-                                <td>{game.location}</td>
-                                <td>
-                                    <button
-                                        onClick={() =>
-                                            handleTicketClick(game.id)
-                                        }
-                                    >
-                                        Tickets
-                                    </button>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+        <div id="games-list-container">
+            {gamesList.map((game) => {
+                const date = new Date(game.date_time)
+                const formatter = new Intl.DateTimeFormat('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                })
+                const formattedTime = formatter.format(date)
+                const current_date = new Date()
+                if (current_date > date) return
+                return (
+                    <div className="card mb-3 russo-one-regular" key={game.id}>
+                        <div className="row no-gutters">
+                            <div className="col-sm-3">{`${date.toDateString()} at ${formattedTime}`}</div>
+                            <div className="col-sm-5">{`${game.away_team} @ ${game.home_team}`}</div>
+                            <div className="col-sm-3">{game.location}</div>
+                            <div className="col-sm-1">
+                                <button
+                                    className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                                    onClick={() => handleTicketClick(game.id)}
+                                >
+                                    Tickets
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
         </div>
     )
 }
