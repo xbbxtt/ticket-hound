@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { mlbApi } from '../app/apiSlice'
 import { useState, useEffect } from 'react'
+import ErrorNotification from './ErrorNotification'
 
 export default function GetVividseatsTickets(awayTeam, homeTeam, dateTime) {
     const {
