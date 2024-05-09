@@ -114,6 +114,8 @@ class TickpickTicketQueries:
             home_team = home_team.lower()
             home_team = home_team.replace(" ", "-")
             url = f"https://www.tickpick.com/mlb/{home_team}-tickets/"
+
+            use_scraper_one = True
             page = requests.get(url)
             soup = BeautifulSoup(page.content, "lxml")
             soup = soup.find(id="events")
@@ -127,24 +129,48 @@ class TickpickTicketQueries:
             for result in results_without_promos:
                 results.append(result)
 
+            if not results:
+                use_scraper_one = False
+                results = soup.find_all(
+                    "script", type="application/ld+json"
+                )
+
             for result in results:
-                script_tag = result.find("script")
-                if script_tag:
-                    script_content = (
-                        script_tag.string.strip()
-                    )
+                if use_scraper_one:
+                    script_tag = result.find("script")
+                    if script_tag:
+                        script_content = (
+                            script_tag.string.strip()
+                        )
+                        try:
+                            data = json.loads(
+                                script_content
+                            )
+                        except json.JSONDecodeError:
+                            raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
+
+                    else:
+                        raise HTTPException(status_code = 404, detail="No script tag found or script tag is empty.")
+                else:
+                    result = str(result)
+                    begin_index = result.find('{')
+                    result = result[begin_index:]
+                    reversed_result = result[::-1]
+                    end_index = reversed_result.find('}')
+                    reversed_result = reversed_result[end_index:]
+                    script_content = reversed_result[::-1]
+
                     try:
                         data = json.loads(
                             script_content
                         )
                     except json.JSONDecodeError:
-                        raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
+                            raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
 
-                else:
-                    raise HTTPException(status_code = 404, detail="No script tag found or script tag is empty.")
+
 
                 if data["startDate"][:10] == date_time[:10]:
-                    min_price = data["offers"]["lowPrice"]
+                    min_price = str(data["offers"]["lowPrice"])
                     url = data["offers"]["url"]
                     logo = "https://i.postimg.cc/6qgmRW6k/Tick-Pick-Logo.jpg"
                     provider_name = "TickPick"
