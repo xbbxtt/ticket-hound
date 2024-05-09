@@ -11,6 +11,10 @@
 .btn-success {
     background-color: #fc4100 !important;
     border-color: #fc4100;
+
+}
+.find-games {
+    font-size: 30px;
 }
 
 #detail-parent {

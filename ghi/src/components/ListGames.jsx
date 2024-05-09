@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { mlbApi } from '../app/apiSlice'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function ListGames({
     startDate,
@@ -31,8 +31,13 @@ export default function ListGames({
             setGamesList([])
         } else if (gamesData && !isGamesLoading) {
             setError('')
-            console.log([...gamesData.slice(0, limit)])
+
             if (limit && limit <= gamesData.length) {
+                gamesData.filter((game) => {
+                    const date = new Date(game.date_time)
+                    const currentDate = new Date()
+                    return date > currentDate
+                })
                 setGamesList([...gamesData.slice(0, limit)])
             } else {
                 setGamesList([...gamesData])
@@ -51,7 +56,6 @@ export default function ListGames({
     if (isGamesLoading) return <div>Loading...</div>
 
     if (error) return
-
     return (
         <div id="games-list-container">
             {gamesList.map((game) => {
@@ -61,8 +65,6 @@ export default function ListGames({
                     minute: '2-digit',
                 })
                 const formattedTime = formatter.format(date)
-                const current_date = new Date()
-                if (current_date > date) return
                 return (
                     <div className="card mb-3 russo-one-regular" key={game.id}>
                         <div className="row no-gutters">
@@ -71,7 +73,7 @@ export default function ListGames({
                             <div className="col-sm-3">{game.location}</div>
                             <div className="col-sm-1">
                                 <button
-                                    className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
+                                    className="btn btn-success btn-lg ml-auto russo-one-regular"
                                     onClick={() => handleTicketClick(game.id)}
                                 >
                                     Tickets

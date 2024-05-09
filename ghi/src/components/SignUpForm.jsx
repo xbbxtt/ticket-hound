@@ -45,9 +45,6 @@ export default function SignUpForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-        // Checks if the two password inputs have the same password
-        // If they don't it displays an error and resets the password inputs
-        // If they do it submits the form
         if (passwordConfirmation != formData.password) {
             setErrorMessage('Passwords do not match, please try again')
             setPasswordConfirmation('')

@@ -212,5 +212,6 @@ class UserQueries:
                     )
                     return True
         except Exception as e:
-            print (e, "smh")
+            print (e)
             return False
+

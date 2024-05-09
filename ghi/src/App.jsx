@@ -15,8 +15,8 @@ if (!API_HOST) {
     throw new Error('VITE_API_HOST is not defined')
 }
 
-function App() {
-    const [error, setError] = useState(null)
+export default function App() {
+    const [error] = useState(null)
 
     return (
         <div className="App">
@@ -29,5 +29,3 @@ function App() {
         </div>
     )
 }
-
-export default App
