@@ -1,16 +1,38 @@
 # Module3 Project Gamma
 
-## Getting started
+## TicketHound
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+- Billy Berger-Bailey
+- Nahom Zeleke
+- Nathan Batten
+- Justin Cosby
 
-## Install Extensions
+## Intended Market
 
--   Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
--   Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+TicketHound is intended for the baseball fans and baseball watchers who wants to find the most affordable tickets for their pockets.
+
+## Functionality
+
+- When users first land on the page, they will see the games for the following day
+- Users will need to create a profile to discover more to the website such as: profile, more games, game details, and access to the ticket websites
+- Users can create a profile and personalize their profile by adding birthdate, favorite team, etc.
+- Once logged in, they can edit profile or see additional games, favorite team's schedule and details of games
+- Games will provide the option of selecting future dates and teams, to see specific game(s) with location and time/date
+- Game Details will display minimum price, ticket provider, and link to ticket website
+
+## Project Initialization
+
+To fully enjoy this application on your local machine, please make sure to follow these steps:
+
+- Clone the repository down to your local machine
+- CD into the new project directory
+- Run docker volume create pg-admin
+- Run docker volume create database volume
+- Run docker compose build
+- Run docker compose up
+- Obtain SeatGeek API Key(* info here *)
+
+Then SNIFF OUT THE BEST DEALS!!!
 
 ## Deliverables
 
@@ -22,78 +44,68 @@ tasks for this week.
 
 ## Project layout
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
-
+File Diagram for TicketHound App
+```
+.
+├── api
+│   ├── migrations
+│   ├── models
+│   ├── __pycache__
+│   ├── queries
+│   ├── routers
+│   ├── tests
+│   └── utils
+├── docs
+├── ghi
+│   ├── node_modules
+│   ├── public
+│   └── src
+├── journals
+└── ticket-hound
+```
 ### Directories
 
-Several directories have been added to your project. The
-directories `docs` and `journals` are places for you and
-your team-mates to, respectively, put any documentation
-about your project that you create and to put your
-project-journal entries. See the _README.md_ file in each
-directory for more info.
+- API (Back-end, FastAPI, PostgresSQL, Docker)
+  - Migrations creates and configures tables for the database
+  - Models consists of games, teams, tickets, and user models. The models purpose is to define what information is received from the backend for later use. Some of the models(teams/tickets/games) are getting information from our 3rd party APIs, while users' model comes directly from user's input.
+  - Queries is the code that allows the models to fetch the data from 3rd party APIs or users. Game queries has the backend code for how to access the schedule of games and details for each game. Team queries objective is to gather all teams of the MLB and their details. Ticket queries stores the code that fetches the data collected from 3rd party APIs(VividSeats, TickPick, and SeatGeek). Each ticket provider's information was accessed differently, VividSeats was collected throught the ESPN API, SeatGeek was directly from its API, while TickPick was scraped from its website. User queries code allows the option to create, edit, and delete user info for user, while also allowing app to get user details by username or id.
+  - Routers *link to routers doc*
+  - Tests verifies the code written in routers is functional and diplays properly
 
-The other directories, `ghi` and `api`, are services, that
-you can start building off of.
+- Docs
+  - CRUD Routes
+  - 3rd Party APIs docs
 
-Inside of `ghi` is a minimal React app that has an "under construction" page.
-This app is written using the [Vite](https://vitejs.dev/) bundler. The example
-code is also using [jsdoc](https://jsdoc.app/) to provide type hints for
-JavaScript. You are not required to use JSDoc yourself, and you will be removing
-these examples and providing your own code for `App.jsx`
+- GHI (Front-end, Redux, React, Bootstrap)
+  - Src contains all of the front-end components and css that renders the information gathered on the backend, to then display it to the user on the frontend.
 
-Inside of `api` is a minimal FastAPI application.
-"Where are all the files?" you might ask? Well, the
-`main.py` file is the whole thing, and go take look inside
-of it... There's not even much in there..., hmm? That is
-FastAPI, we'll learn more about it in the coming days. Can
-you figure out what this little web-application does even
-though you haven't learned about FastAPI yet?
+ ### Excalidraw
 
-Also in `api` is a directory for your migrations.
-If you choose to use PostgreSQL, then you'll want to use
-migrations to control your database. Unlike Django, where
-migrations were automatically created for you, you'll write
-yours by hand using DDL. Don't worry about not knowing what
-DDL means; we have you covered. There's a sample migration
-in there that creates two tables so you can see what they
-look like.
+ ![alt text](Excalidraw.png)
 
-The Dockerfile and Dockerfile.dev run your migrations
-for you automatically.
+## Issues Tracking
 
-### Other files
+https://gitlab.com/tickethounds/ticket-hound/-/issues/?sort=created_date&state=all&first_page_size=20
 
-The following project files have been created as a minimal
-starting point. Please follow the guidance for each one for
-a most successful project.
+## Unit Testing
 
--   `docker-compose.yaml`: there isn't much in here, just a
-    **really** simple UI and FastAPI service. Add services
-    (like a database) to this file as you did with previous
-    projects in module #2.
--   `.gitlab-ci.yml`: This is your "ci/cd" file where you will
-    configure automated unit tests, code quality checks, and
-    the building and deployment of your production system.
-    Currently, all it does is deploy an "under construction"
-    page to your production UI on GitLab and a sample backend
-    to CapRover. We will learn much more about this file.
--   `.gitignore`: This is a file that prevents unwanted files
-    from getting added to your repository, files like
-    `pyc` files, `__pycache__`, etc. We've set it up so that
-    it has a good default configuration for Python projects.
--   `.env.sample`: This file is a template to copy when
-    creating environment variables for your team. Create a
-    copy called `.env` and put your own passwords in here
-    without fear of it being committed to git (see `.env`
-    listed in `.gitignore`). You can also put team related
-    environment variables in here, things like api and signing
-    keys that shouldn't be committed; these should be
-    duplicated in your deployed environments.
+Billy Berger-Bailey : test_get_list_of_teams
+Justin Cosby : test_get_team_details
+Nahom Zeleke : test_get_list_games
+Nathan Batten : test_get_details_of_games
+
+ ## Stretch Goals
+
+ - Ability to save games
+ - Search Bar
+ - Team Profile Page
+ - Deployment
+ - Stats/Standings
+ - Other Sports
+ - Other Ticketing Sites
+ - Uber or other Transportation apps
+ - Weather
+ - About Us Page
 
 ### Installing python dependencies locally
 
@@ -124,18 +136,6 @@ pip install -r requirements.txt
 Then make sure the venv is selected in VSCode by checking the lower right of the
 VSCode status bar
 
-### Setup GitLab repo/project
-
--   make sure this project is in a group. If it isn't, stop
-    now and move it to a GitLab group
--   remove the fork relationship: In GitLab go to:
-
-    Settings -> General -> Advanced -> Remove fork relationship
-
--   add these GitLab CI/CD variables:
-    -   PUBLIC_URL : this is your gitlab pages URL
-    -   VITE_APP_API_HOST: enter "blank" for now
-
 #### Your GitLab pages URL
 
 You can't find this in GitLab until after you've done a deploy
@@ -143,8 +143,8 @@ but you can figure it out yourself from your GitLab project URL.
 
 If this is your project URL
 
-https://gitlab.com/GROUP_NAME/PROJECT_NAME
+https://gitlab.com/tickethounds/ticket-hound
 
-then your GitLab pages URL will be
+<!-- then your GitLab pages URL will be
 
-https://GROUP_NAME.gitlab.io/PROJECT_NAME
+https://GROUP_NAME.gitlab.io/PROJECT_NAME -->
