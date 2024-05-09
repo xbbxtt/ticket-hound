@@ -10,9 +10,6 @@ export default function Mainpage() {
     const todaysFormattedDate = todaysDate.toJSON().slice(0, 10)
     todaysDate.setDate(todaysDate.getDate() + 7)
     const endFormattedDate = todaysDate.toJSON().slice(0, 10)
-    const [displayTeamsList, setDisplayTeamsList] = useState(false)
-    // Sets the users favorite team's name
-    const [teamName, setTeamName] = useState()
     // Sets up the formData that will be used in the form
     const formData = {
         start_date: todaysFormattedDate,

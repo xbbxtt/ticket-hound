@@ -1,6 +1,6 @@
 import { mlbApi } from '../app/apiSlice'
 import { useState } from 'react'
-import TeamDropDown from './teamDropDown'
+import TeamDropDown from './TeamDropDown'
 import ErrorNotification from './ErrorNotification'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -135,9 +135,11 @@ export default function SignUpForm() {
                                 placeholder=""
                             />
                         </div>
-                        <label className='mb-3' htmlFor='favorite_team_id'>Favorite Team:</label>
+                        <label className="mb-3" htmlFor="favorite_team_id">
+                            Favorite Team:
+                        </label>
                         <TeamDropDown
-                            name='favorite_team_id'
+                            name="favorite_team_id"
                             value={formData.favorite_team_id}
                             onChangeFunction={handleFormChange}
                         />

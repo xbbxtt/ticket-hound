@@ -1,4 +1,4 @@
-import TeamDropDown from './teamDropDown'
+import TeamDropDown from './TeamDropDown'
 import InputBox from './InputBox'
 
 export default function ScheduleInput({ formData, handleFormChangeFunction }) {

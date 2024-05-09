@@ -2,7 +2,7 @@ import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import InputBox from './InputBox'
-import TeamDropDown from './teamDropDown'
+import TeamDropDown from './TeamDropDown'
 import ErrorNotification from './ErrorNotification'
 
 export default function EditProfile() {
