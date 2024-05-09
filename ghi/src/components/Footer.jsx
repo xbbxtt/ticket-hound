@@ -1,9 +1,9 @@
 export default function Footer() {
     return (
-        <div
+        <footer
             id="footer"
             className="d-flex flex-wrap justify-content-between
-        align-items-center py-3 mny-4 border-top russo-one-regular"
+        align-items-center py-3 mny-4 mt-auto russo-one-regular footer "
         >
             <div>Helping You Sniff Out The Best Deals</div>
             <p className="col-md-4 mb-0 text-body-secondary">
@@ -15,6 +15,6 @@ export default function Footer() {
                 />
             </p>
             <div> Tickethound 2024</div>
-        </div>
+        </footer>
     )
 }

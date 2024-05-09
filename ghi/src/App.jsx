@@ -25,9 +25,7 @@ function App() {
             </header>
             <Outlet />
             <ErrorNotification error={error} />
-            <footer>
-                <Footer />
-            </footer>
+            <Footer />
         </div>
     )
 }
