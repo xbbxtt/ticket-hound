@@ -13,7 +13,7 @@ class VividseatsTicketQueries:
     Can be dependency injected into a route
     """
 
-    def get_ticket(self,home_team, date_time):
+    def get_ticket(self,home_team, away_team, date_time):
         try:
             team_id_response = requests.get(
                 "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams"
@@ -26,7 +26,7 @@ class VividseatsTicketQueries:
 
                 raise HTTPException(status_code=404, detail="Team not found")
 
-            
+
             response = requests.get(
                 f"https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/{team_id}/schedule"
             )

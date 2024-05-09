@@ -59,7 +59,7 @@ export default function EditProfile() {
     }
 
     return (
-        <div className="container">
+        <div className="container mb-4">
             <h2 className="p-4 russo-one-regular">Edit Profile</h2>
             <div className="card col col-span-6 shadow">
                 <form onSubmit={handleFormSubmit}>
