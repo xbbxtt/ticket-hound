@@ -255,20 +255,23 @@ The three routes are:
 
 #### SeatGeek:
 
-example url:
-`/api/tickets/seatgeek?away_team=Atlanta Braves&home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
-Uses SeatGeek's API to get the data **ADD DIRECTIONS TO GET API KEY**
+-   example url:
+    `/api/tickets/seatgeek?away_team=Atlanta Braves&home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
+
+Uses SeatGeek's API to get the data .
 
 #### VividSeat:
 
-example url:
-`/api/tickets/vividseats?away_team=Atlanta Braves&home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
-Uses ESPN's API that has VividSeat's data built into it, no keys required
+-   example url:
+    `/api/tickets/vividseats?away_team=Atlanta Braves&home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
+
+Uses ESPN's API that has VividSeat's data built into it, no keys required.
 
 #### TickPick:
 
-example url:
-`/api/tickets/tickpick?home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
+-   example url:
+    `/api/tickets/tickpick?home_team=New York Mets&date_time=2024-05-11T20:10:00Z`
+
 Uses the Beautiful Soup webscraper to scrap data from TickPick's website.
 
 All of the ticket queries return JSON with the same structure

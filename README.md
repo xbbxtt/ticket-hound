@@ -25,12 +25,28 @@ TicketHound is intended for the baseball fans and baseball watchers who wants to
 To fully enjoy this application on your local machine, please make sure to follow these steps:
 
 -   Clone the repository down to your local machine
--   CD into the new project directory
--   Run docker volume create pg-admin
--   Run docker volume create database volume
--   Run docker compose build
--   Run docker compose up
--   Obtain SeatGeek API Key(_ info here _)
+-   `cd` into the new project root directory
+-   Run `docker volume create pg-admin`
+-   Run `docker volume create database_volume`
+-   Run `docker volume create postgres-data`
+-   Run `docker compose build`
+-   Run `docker compose up`
+-   Obtain SeatGeek API Key ([API documentation](/docs/api-routes.md))
+-   Setup your `.env` file
+
+    -   This file is not tracked by git so you'll need to create it
+    -   In the project's root directory, make a new file named `.env`
+    -   In that file you'll need to define 6 variables:
+
+        ```
+        POSTGRES_DB = <The name of the database>
+        POSTGRES_USER = <The username to connect to the database>
+        POSTGRES_PASSWORD = <The password to connect to the database>
+        SIGNING_KEY = <Random hex string, used to hash passwords>
+
+        SEATGEEK_API_KEY= <Obtained by following the directions above>
+        SEATGEEK_CLIENT_ID = <Your assigned Seatgeek client ID>
+        ```
 
 Then SNIFF OUT THE BEST DEALS!!!
 
@@ -72,7 +88,7 @@ File Diagram for TicketHound App
     -   Migrations creates and configures tables for the database
     -   Models consists of games, teams, tickets, and user models. The models purpose is to define what information is received from the backend for later use. Some of the models(teams/tickets/games) are getting information from our 3rd party APIs, while users' model comes directly from user's input.
     -   Queries is the code that allows the models to fetch the data from 3rd party APIs or users. Game queries has the backend code for how to access the schedule of games and details for each game. Team queries objective is to gather all teams of the MLB and their details. Ticket queries stores the code that fetches the data collected from 3rd party APIs(VividSeats, TickPick, and SeatGeek). Each ticket provider's information was accessed differently, VividSeats was collected throught the ESPN API, SeatGeek was directly from its API, while TickPick was scraped from its website. User queries code allows the option to create, edit, and delete user info for user, while also allowing app to get user details by username or id.
-    -   Routers _link to routers doc_
+    -   Routers [API documentation](/docs/api-routes.md)
     -   Tests verifies the code written in routers is functional and diplays properly
 
 -   Docs
@@ -89,7 +105,7 @@ File Diagram for TicketHound App
 
 ## Issues Tracking
 
-https://gitlab.com/tickethounds/ticket-hound/-/issues/?sort=created_date&state=all&first_page_size=20
+[Gitlab issue page](https://gitlab.com/tickethounds/ticket-hound/-/issues/?sort=created_date&state=all&first_page_size=20)
 
 ## Unit Testing
 
