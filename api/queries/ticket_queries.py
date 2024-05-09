@@ -41,12 +41,12 @@ class VividseatsTicketQueries:
             for event in json_data["events"]:
                 if (event["date"][:-1]) == (date_time[:-4]):
                     min_price = str(
-                        event["competitions"][0]["tickets"][0]["startingPrice"]
+                        int(event["competitions"][0]["tickets"][0]["startingPrice"])
                     )
                     url = event["competitions"][0]["tickets"][0]["links"][0][
                         "href"
                     ]
-                    logo = "https://1000logos.net/wp-content/uploads/2023/11/Vivid-Seats-Logo.png"
+                    logo = "https://i.postimg.cc/nh8WhhP7/Vivid-Seats-Logo.jpg"
                     provider_name = "VividSeats"
                     return TicketOut(
                         min_price=min_price,
@@ -84,7 +84,9 @@ class SeatgeekTicketQueries:
                 if event["datetime_utc"] == date_time:
                     min_price = str(event["stats"]["lowest_sg_base_price"])
                     url = event["url"]
-                    logo = "https://hoodzpahdesign.com/wp-content/uploads/2021/07/SeatGeek-wordmark-BTS-01-2048x1152.png"
+                    logo = (
+                        "https://i.postimg.cc/gjn7nXpy/logos-seatgeek-2x.jpg"
+                    )
                     provider_name = "SeatGeek"
                     return TicketOut(
                         min_price=min_price,
@@ -112,39 +114,65 @@ class TickpickTicketQueries:
             home_team = home_team.lower()
             home_team = home_team.replace(" ", "-")
             url = f"https://www.tickpick.com/mlb/{home_team}-tickets/"
+
+            use_scraper_one = True
             page = requests.get(url)
             soup = BeautifulSoup(page.content, "lxml")
             soup = soup.find(id="events")
             results = soup.find_all(
                 "div", class_="srItem active allE SPORTSE hasPromos"
             )
-            
+
             results_without_promos = soup.find_all(
                 "div", class_="srItem active allE SPORTSE"
             )
             for result in results_without_promos:
                 results.append(result)
 
+            if not results:
+                use_scraper_one = False
+                results = soup.find_all(
+                    "script", type="application/ld+json"
+                )
+
             for result in results:
-                script_tag = result.find("script")
-                if script_tag:
-                    script_content = (
-                        script_tag.string.strip()
-                    )
+                if use_scraper_one:
+                    script_tag = result.find("script")
+                    if script_tag:
+                        script_content = (
+                            script_tag.string.strip()
+                        )
+                        try:
+                            data = json.loads(
+                                script_content
+                            )
+                        except json.JSONDecodeError:
+                            raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
+
+                    else:
+                        raise HTTPException(status_code = 404, detail="No script tag found or script tag is empty.")
+                else:
+                    result = str(result)
+                    begin_index = result.find('{')
+                    result = result[begin_index:]
+                    reversed_result = result[::-1]
+                    end_index = reversed_result.find('}')
+                    reversed_result = reversed_result[end_index:]
+                    script_content = reversed_result[::-1]
+
                     try:
                         data = json.loads(
                             script_content
                         )
                     except json.JSONDecodeError:
-                        raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
+                            raise HTTPException(status_code = 404, detail="Error decoding JSON. The script might not contain valid JSON.")
 
-                else:
-                    raise HTTPException(status_code = 404, detail="No script tag found or script tag is empty.")
+
 
                 if data["startDate"][:10] == date_time[:10]:
-                    min_price = data["offers"]["lowPrice"]
+                    min_price = str(data["offers"]["lowPrice"])
                     url = data["offers"]["url"]
-                    logo = "https://sportsandentertainmenttravel.com/wp-content/uploads/2019/02/TickPick-Logo-300x300.png"
+                    logo = "https://i.postimg.cc/6qgmRW6k/Tick-Pick-Logo.jpg"
                     provider_name = "TickPick"
 
                     return TicketOut(

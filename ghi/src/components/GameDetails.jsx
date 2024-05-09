@@ -15,51 +15,56 @@ export default function GameDetails() {
 
     if (gameIsLoading) return <div>Loading...</div>
 
+    const date = new Date(gameData.game_date)
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+    })
+    const formattedTime = formatter.format(date)
+
     return (
-        <div>
-            <div>
-                <h3>{`${gameData.away_team}@${gameData.home_team}`}</h3>
+        <div className="container-fluid">
+            <div className="mb-3">
+                <h3 className="russo-one-regular p-4">{`${gameData.away_team} @ ${gameData.home_team}`}</h3>
             </div>
-            <div>
-                <h4>Game Details:</h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Location</th>
-                            <th>Time</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{gameData.location}</td>
-                            <td>{gameData.game_date.slice(11, 19)}</td>
-                            <td>{gameData.game_date.slice(0, 10)}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <GetSeatgeekTickets
-                                    awayTeam={gameData.away_team}
-                                    homeTeam={gameData.home_team}
-                                    dateTime={gameData.game_date}
-                                />
-                            </td>
-                            <td>
-                                <GetVividseatsTickets
-                                    awayTeam={gameData.away_team}
-                                    homeTeam={gameData.home_team}
-                                    dateTime={gameData.game_date}
-                                />
-                            </td>
-                            <td>
-                                <GetTickpickTickets
-                                    homeTeam={gameData.home_team}
-                                    dateTime={gameData.game_date}
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="detail-parent">
+                <div className="row">
+                    <div className="col-9">
+                        <div className="card mb ticket-card">
+                            <div>
+                                <div>
+                                    <GetSeatgeekTickets
+                                        awayTeam={gameData.away_team}
+                                        homeTeam={gameData.home_team}
+                                        dateTime={gameData.game_date}
+                                    />
+                                </div>
+                                <div>
+                                    <GetVividseatsTickets
+                                        awayTeam={gameData.away_team}
+                                        homeTeam={gameData.home_team}
+                                        dateTime={gameData.game_date}
+                                    />
+                                </div>
+                                <div>
+                                    <GetTickpickTickets
+                                        homeTeam={gameData.home_team}
+                                        dateTime={gameData.game_date}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-3">
+                        <div className="card mb-1 row-3">
+                            <div>
+                                <div>{gameData.location}</div>
+                                <div>{formattedTime}</div>
+                                <div>{date.toDateString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
