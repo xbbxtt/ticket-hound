@@ -81,6 +81,10 @@ nav {
     margin-top: 40px;
 }
 
+#games-list-container {
+    padding-bottom: 5%;
+}
+
 .russo-one-regular {
     font-family: 'Russo One', sans-serif;
     font-weight: 400;

@@ -53,7 +53,7 @@ export default function ListGames({
     if (error) return
 
     return (
-        <div>
+        <div id="games-list-container">
             {gamesList.map((game) => {
                 const date = new Date(game.date_time)
                 const formatter = new Intl.DateTimeFormat('en-US', {

@@ -19,7 +19,7 @@ function App() {
     const [error, setError] = useState(null)
 
     return (
-        <div className="container-fluid" className="App">
+        <div className="App">
             <header className="App-header">
                 <Nav />
             </header>
