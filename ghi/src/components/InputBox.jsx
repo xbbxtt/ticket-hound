@@ -14,7 +14,7 @@ export default function InputBox({
         placeholder: placeholder,
         title: title,
     }
-    if (type === 'date') {
+    if (type === 'date' && name !== 'birthday') {
         const date = new Date().toISOString().split('T')[0]
         options['min'] = date
     }

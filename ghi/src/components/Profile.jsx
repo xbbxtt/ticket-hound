@@ -22,6 +22,7 @@ export default function Profile() {
             trigger(user.favorite_team_id)
         }
     }, [user, isLoadingUser, navigate, trigger])
+
     useEffect(() => {
         if (result.isSuccess) setTeamName(result.data)
     }, [result])
@@ -43,10 +44,16 @@ export default function Profile() {
         return <div>Loading...</div>
     }
 
+    const birthdate = new Date(user?.birthday)
+    birthdate.setDate(birthdate.getDate() + 1)
+
     return (
         <div className="container-fluid mb-3">
             <div
-                style={{ backgroundColor: `#${teamName?.alternate_color}` }}
+                style={{
+                    backgroundColor: `#${teamName?.alternate_color}`,
+                    color: `#${teamName?.color}`,
+                }}
                 className="offset-3 col-6"
                 id="profile-card"
             >
@@ -56,7 +63,7 @@ export default function Profile() {
                         Name: {user?.first_name} {user?.last_name}
                     </p>
                     <p>Address: {user?.address}</p>
-                    <p>Birthday: {user?.birthday}</p>
+                    <p>Birthday: {birthdate.toDateString()}</p>
                     <p>Favorite Team: {teamName?.full_name}</p>
                     {teamName && (
                         <img
@@ -84,4 +91,5 @@ export default function Profile() {
                 </div>
             </div>
         </div>
-    )}
+    )
+}
