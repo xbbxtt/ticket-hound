@@ -36,7 +36,7 @@ export default function GetTickpickTickets(homeTeam, dateTime) {
                 <div className="col-sm-4">${ticketData.min_price}</div>
                 <div className="col-sm-4">
                     <Link type="button" to={ticketData.url} target="_blank">
-                        <button className="btn btn-success btn-lg ml-auto  mb-3 russo-one-regular">
+                        <button className="btn btn-success btn-lg ml-auto russo-one-regular">
                             Ticket
                         </button>
                     </Link>
