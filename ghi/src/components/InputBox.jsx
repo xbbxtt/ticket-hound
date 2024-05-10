@@ -7,6 +7,7 @@ export default function InputBox({
     title,
 }) {
     const options = {
+        id: name,
         type: type,
         name: name,
         value: value,
