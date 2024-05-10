@@ -72,8 +72,10 @@ export default function GamesSchedule() {
         return <div>Loading...</div>
     }
     return (
-        <>
-            <h2 className="p-4 h2 mb-3 russo-one-regular">Search Upcoming Games!</h2>
+        <div className="py-5">
+            <h2 className="p-4 h2 mb-3 russo-one-regular">
+                Search Upcoming Games!
+            </h2>
             {teamName && (
                 <div className="container-fluid mb-3">
                     <div className="card offset-3 col-6 container-darkblue shadow">
@@ -96,6 +98,6 @@ export default function GamesSchedule() {
                 />
             )}
             {errorMessage && <ErrorNotification error={errorMessage} />}
-        </>
+        </div>
     )
 }

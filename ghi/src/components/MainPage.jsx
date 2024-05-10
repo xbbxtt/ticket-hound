@@ -23,9 +23,9 @@ export default function Mainpage() {
     const navigate = useNavigate()
 
     return (
-        <>
+        <div className="py-5">
             <button
-                className="p-4 mt-5 btn-success btn-lg mb-5 russo-one-regular find-games "
+                className="p-4 mt-2 btn-success btn-lg mb-5 russo-one-regular find-games "
                 onClick={() => navigate('/games')}
             >
                 Find More Games!
@@ -39,6 +39,6 @@ export default function Mainpage() {
                 limit={5}
             />
             {errorMessage && <ErrorNotification error={errorMessage} />}
-        </>
+        </div>
     )
 }
