@@ -23,7 +23,7 @@ export default function GameDetails() {
     const formattedTime = formatter.format(date)
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid py-5">
             <div className="mb-3">
                 <h3 className="russo-one-regular p-4">{`${gameData.away_team} @ ${gameData.home_team}`}</h3>
             </div>
