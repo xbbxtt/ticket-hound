@@ -1,6 +1,10 @@
 import { mlbApi } from '../app/apiSlice'
 
-export default function TeamDropDown({ value, onChangeFunction, name }) {
+export default function TeamDropDown({
+    value,
+    onChangeFunction,
+    name = 'favorite_team_id',
+}) {
     const { data: teamData, isLoading: teamsIsLoading } =
         mlbApi.useListMlbTeamsQuery()
 
@@ -8,7 +12,7 @@ export default function TeamDropDown({ value, onChangeFunction, name }) {
         return <div>Loading...</div>
     }
     return (
-        <div className="mb-2">
+        <div id={name} className="mb-2">
             <select
                 id={name}
                 name={name}

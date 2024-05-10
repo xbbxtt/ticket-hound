@@ -123,12 +123,14 @@ export default function EditProfile() {
                             placeholder=""
                         />
                     </div>
-                    <label htmlFor="favorite_team_id">Favorite Team:</label>
-                    <TeamDropDown
-                        name="favorite_team_id"
-                        value={formData.favorite_team_id}
-                        onChangeFunction={handleFormChange}
-                    />
+                    <label>
+                        Favorite Team:
+                        <TeamDropDown
+                            name="favorite_team_id"
+                            value={formData.favorite_team_id}
+                            onChangeFunction={handleFormChange}
+                        />
+                    </label>
                     <div className="p-4">
                         <button
                             className="btn btn-success btn-md ml-auto p-3 mb-3 russo-one-regular"
