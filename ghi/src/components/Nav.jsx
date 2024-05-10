@@ -1,5 +1,5 @@
-import { Link, NavLink } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
 import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
 
@@ -20,9 +20,7 @@ export default function Nav() {
         signout()
     }
 
-    const { data: user, isLoading: isLoadingUser } =
-        mlbApi.useAuthenticateQuery()
-
+    const { data: user } = mlbApi.useAuthenticateQuery()
     return (
         <nav
             className="navbar navbar-expand-lg navbar bg-success"

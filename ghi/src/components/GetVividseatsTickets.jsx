@@ -15,6 +15,7 @@ export default function GetVividseatsTickets(awayTeam, homeTeam, dateTime) {
     useEffect(() => {
         if (isError) {
             setErrorMessage(error.data.detail)
+            
         }
     }, [error, isError, setErrorMessage, isTicketLoading])
 

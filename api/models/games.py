@@ -34,9 +34,3 @@ class DetailOut(BaseModel):
     away_team: str
     location: str
     game_date: datetime
-
-
-
-
-
-#Example url: http://localhost:8000/api/games?startDate=2024-05-06&endDate=2024-05-06&awayTeam="Baltimore_Orioles"&homeTeam="New York YAnkees"

@@ -2,7 +2,7 @@ import { mlbApi } from '../app/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import InputBox from './InputBox'
-import TeamDropDown from './teamDropDown'
+import TeamDropDown from './TeamDropDown'
 import ErrorNotification from './ErrorNotification'
 
 export default function EditProfile() {
@@ -59,9 +59,9 @@ export default function EditProfile() {
     }
 
     return (
-        <div className="container">
+        <div className="container mb-4 py-5">
             <h2 className="p-4 russo-one-regular">Edit Profile</h2>
-            <div className="card col col-span-6 shadow">
+            <div className="card col col-span-6 shadow py-5">
                 <form onSubmit={handleFormSubmit}>
                     {errorMessage && <ErrorNotification error={errorMessage} />}
                     <div>
