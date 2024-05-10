@@ -58,7 +58,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid py-5">
             <div className="offset-3 col-6 container-darkblue">
                 <div className="shadow p-4 mt-4">
                     <form onSubmit={handleFormSubmit}>
