@@ -12,7 +12,6 @@
 .btn-success {
     background-color: #fc4100 !important;
     border-color: #fc4100;
-
 }
 .find-games {
     font-size: 30px;
@@ -69,7 +68,7 @@ nav {
 } */
 
 #footer {
-    height: 100px;
+    height: 75px;
     color: #2c4e80;
     padding: 40px;
     margin-top: 200px;
