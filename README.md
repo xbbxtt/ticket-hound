@@ -29,8 +29,6 @@ To fully enjoy this application on your local machine, please make sure to follo
 -   Run `docker volume create pg-admin`
 -   Run `docker volume create database_volume`
 -   Run `docker volume create postgres-data`
--   Run `docker compose build`
--   Run `docker compose up`
 -   Obtain SeatGeek API Key ([API documentation](/docs/api-routes.md))
 -   Setup your `.env` file
 
@@ -47,6 +45,9 @@ To fully enjoy this application on your local machine, please make sure to follo
         SEATGEEK_API_KEY= <Obtained by following the directions above>
         SEATGEEK_CLIENT_ID = <Your assigned Seatgeek client ID>
         ```
+
+-   Run `docker compose build`
+-   Run `docker compose up`
 
 Then SNIFF OUT THE BEST DEALS!!!
 

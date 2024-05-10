@@ -66,12 +66,15 @@ export default function ListGames({
                 })
                 const formattedTime = formatter.format(date)
                 return (
-                    <div className="card mb-3 russo-one-regular mx-4" key={game.id}>
+                    <div
+                        className="card mb-3 russo-one-regular mx-4"
+                        key={game.id}
+                    >
                         <div className="row no-gutters">
                             <div className="col-sm-3">{`${date.toDateString()} at ${formattedTime}`}</div>
                             <div className="col-sm-5">{`${game.away_team} @ ${game.home_team}`}</div>
-                            <div className="col-sm-3">{game.location}</div>
-                            <div className="col-sm-1">
+                            <div className="col-sm-2">{game.location}</div>
+                            <div className="col-sm-2">
                                 <button
                                     className="btn btn-success btn-lg ml-auto russo-one-regular"
                                     onClick={() => handleTicketClick(game.id)}

@@ -48,7 +48,7 @@ export default function Profile() {
     birthdate.setDate(birthdate.getDate() + 1)
 
     return (
-        <div className="container-fluid mb-3">
+        <div className="container-fluid py-5">
             <div
                 style={{
                     backgroundColor: `#${teamName?.alternate_color}`,
