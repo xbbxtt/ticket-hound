@@ -13,9 +13,7 @@ class VividseatsTicketQueries:
     Can be dependency injected into a route
     """
 
-    def get_ticket(self, away_team, home_team, date_time):
-        # The first thing to do is get the team id from the ESPN
-        # API that allows us to use the schedule route
+    def get_ticket(self,home_team, away_team, date_time):
         try:
             team_id_response = requests.get(
                 "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams"
@@ -25,13 +23,10 @@ class VividseatsTicketQueries:
                 if team["team"]["displayName"] == home_team:
                     team_id = team["team"]["id"]
             if not team_id:
-                # We will need to raise some kind of 'team not found'
-                # error here
-                return None
 
-            # Now that we have the id and verified it is not None, we
-            # can proceed to finding the game which will have the ticket
-            # price and link attached to it
+                raise HTTPException(status_code=404, detail="Team not found")
+
+
             response = requests.get(
                 f"https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/{team_id}/schedule"
             )

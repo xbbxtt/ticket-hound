@@ -1,6 +1,6 @@
 import { mlbApi } from '../app/apiSlice'
 import { useState } from 'react'
-import TeamDropDown from './teamDropDown'
+import TeamDropDown from './TeamDropDown'
 import ErrorNotification from './ErrorNotification'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -45,9 +45,6 @@ export default function SignUpForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-        // Checks if the two password inputs have the same password
-        // If they don't it displays an error and resets the password inputs
-        // If they do it submits the form
         if (passwordConfirmation != formData.password) {
             setErrorMessage('Passwords do not match, please try again')
             setPasswordConfirmation('')
@@ -61,7 +58,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid py-5">
             <div className="offset-3 col-6 container-darkblue">
                 <div className="shadow p-4 mt-4">
                     <form onSubmit={handleFormSubmit}>
@@ -138,9 +135,11 @@ export default function SignUpForm() {
                                 placeholder=""
                             />
                         </div>
-                        <label className='mb-3' htmlFor='favorite_team_id'>Favorite Team:</label>
+                        <label className="mb-3" htmlFor="favorite_team_id">
+                            Favorite Team:
+                        </label>
                         <TeamDropDown
-                            name='favorite_team_id'
+                            name="favorite_team_id"
                             value={formData.favorite_team_id}
                             onChangeFunction={handleFormChange}
                         />

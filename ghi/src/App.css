@@ -4,6 +4,7 @@
     text-align: center;
     background-color: #2c4e80;
     min-height: 100vh;
+    position: relative;
     color: white;
     font-size: calc(10px + 2vmin);
 }
@@ -11,6 +12,10 @@
 .btn-success {
     background-color: #fc4100 !important;
     border-color: #fc4100;
+
+}
+.find-games {
+    font-size: 30px;
 }
 
 #detail-parent {
@@ -69,8 +74,8 @@ nav {
     padding: 40px;
     margin-top: 200px;
     background-image: linear-gradient(to right, #ffc55a, #fc4100) !important;
-    position: fixed;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
     height: 100px;
     width: 100%;
 }
@@ -99,4 +104,8 @@ nav {
 .card > div {
     justify-content: center;
     align-items: center;
+}
+
+.py-5 {
+    padding-bottom: 120px !important;
 }

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { mlbApi } from '../app/apiSlice'
 
-const Wrapper = ({ children }) => {
+export default function Wrapper ({ children }) {
     const { data: user, isLoading: isLoadingUser } =
         mlbApi.useAuthenticateQuery()
     const navigate = useNavigate()
@@ -19,4 +19,4 @@ const Wrapper = ({ children }) => {
     return <>{children}</>
 }
 
-export default Wrapper
+

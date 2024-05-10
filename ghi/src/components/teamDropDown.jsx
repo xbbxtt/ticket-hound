@@ -1,10 +1,10 @@
 import { mlbApi } from '../app/apiSlice'
 
-const TeamDropDown = ({
+export default function TeamDropDown ({
     value,
     onChangeFunction,
     name = 'favorite_team_id',
-}) => {
+}) {
     const { data: teamData, isLoading: teamsIsLoading } =
         mlbApi.useListMlbTeamsQuery()
 
@@ -35,5 +35,3 @@ const TeamDropDown = ({
         </div>
     )
 }
-
-export default TeamDropDown
