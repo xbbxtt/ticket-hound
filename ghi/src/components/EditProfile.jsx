@@ -59,9 +59,9 @@ export default function EditProfile() {
     }
 
     return (
-        <div className="container mb-4 py-5">
-            <h2 className="p-4 russo-one-regular">Edit Profile</h2>
-            <div className="card col col-span-6 shadow py-5">
+        <div className="container py-5">
+            <h2 className="russo-one-regular">Edit Profile</h2>
+            <div className="card col col-span-6 shadow">
                 <form onSubmit={handleFormSubmit}>
                     {errorMessage && <ErrorNotification error={errorMessage} />}
                     <div>

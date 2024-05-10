@@ -68,15 +68,14 @@ nav {
 } */
 
 #footer {
-    height: 75px;
     color: #2c4e80;
-    padding: 40px;
-    margin-top: 200px;
+    padding: 20px;
     background-image: linear-gradient(to right, #ffc55a, #fc4100) !important;
     position: absolute;
     bottom: 0;
     height: 100px;
     width: 100%;
+    overflow: hidden;
 }
 
 #profile-card {
@@ -106,5 +105,6 @@ nav {
 }
 
 .py-5 {
+    padding-top: 20px;
     padding-bottom: 120px !important;
 }
