@@ -34,3 +34,12 @@ def get_details_of_games(
     if not game_details:
         raise HTTPException(status_code=404, detail="Could not fetch any games")
     return game_details
+
+@router.get("/api/record")
+def get_record(
+    home_team: str,
+    away_team: str,
+    repo: GameQueries = Depends(),
+):
+    record = repo.get_standings(home_team, away_team)
+    return record 

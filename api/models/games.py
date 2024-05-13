@@ -34,3 +34,12 @@ class DetailOut(BaseModel):
     away_team: str
     location: str
     game_date: datetime
+
+class Record(BaseModel):
+    """
+    Represents the data that will be returned from the ESPN API game details
+    """
+    home_record: str
+    away_record: str
+    home_standings: str
+    away_standings: str

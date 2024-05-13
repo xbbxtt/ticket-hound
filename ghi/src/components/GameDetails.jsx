@@ -4,7 +4,8 @@ import GetSeatgeekTickets from './GetSeatgeekTickets'
 import GetVividseatsTickets from './GetVividseatsTickets'
 import GetTickpickTickets from './GetTickpickTickets'
 
-export default function GameDetails() {
+export default function GameDetails(
+) {
     // Using the game's id, this component will make
     // an API call to get the details for a specific game
     const location = useLocation()
@@ -14,6 +15,28 @@ export default function GameDetails() {
         mlbApi.useGameDetailsQuery(id)
 
     if (gameIsLoading) return <div>Loading...</div>
+
+    const [trigger, result] = mlbApi.useLazyRecordDetailsQuery(
+        gameData
+    )
+    const [homeTeam, setHomeTeam] = useState()
+    const [awayTeam, setAwayTeam] = useState()
+
+    useEffect(() => {
+        if (!gameData && !gameIsLoading) {
+            navigate('/')
+        } else if (gameData && !gameIsLoading) {
+            trigger(gameData)
+        }
+    }, [gameData, gameIsLoading, navigate, trigger])
+
+    console.log(result)
+
+    // useEffect(() => {
+    //     if (result.isSuccess) setHomeTeam(result.data)
+    // }, [result])
+
+    if (recordIsLoading) return <div>Loading...</div>
 
     const date = new Date(gameData.game_date)
     const formatter = new Intl.DateTimeFormat('en-US', {
