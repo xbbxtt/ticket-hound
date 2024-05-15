@@ -33,11 +33,6 @@ export default function ListGames({
             setError('')
 
             if (limit && limit <= gamesData.length) {
-                gamesData.filter((game) => {
-                    const date = new Date(game.date_time)
-                    const currentDate = new Date()
-                    return date > currentDate
-                })
                 setGamesList([...gamesData.slice(0, limit)])
             } else {
                 setGamesList([...gamesData])
