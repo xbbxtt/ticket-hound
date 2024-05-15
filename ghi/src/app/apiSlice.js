@@ -51,12 +51,12 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        deleteUser: builder.mutation ({
-            query:() => ({
-                url: "/api/auth/user/delete",
-                method: "DELETE",
+        deleteUser: builder.mutation({
+            query: () => ({
+                url: '/api/auth/user/delete',
+                method: 'DELETE',
             }),
-            invalidatesTags: ["User"]
+            invalidatesTags: ['User'],
         }),
         teamDetails: builder.query({
             query: (id) => ({
@@ -89,6 +89,11 @@ export const mlbApi = createApi({
                 url: `/api/games/${id}`,
             }),
         }),
+        recordDetails: builder.query({
+            query: ({ homeTeam, awayTeam }) => ({
+                url: `/api/record?home_team=${homeTeam}&away_team=${awayTeam}`,
+            }),
+        }),
         seatgeekTickets: builder.query({
             query: ({ awayTeam, homeTeam, dateTime }) => ({
                 url: `/api/tickets/seatgeek?away_team=${awayTeam}&home_team=${homeTeam}&date_time=${dateTime}`,
@@ -116,10 +121,12 @@ export const {
     useSignoutMutation,
     useTeamDetailsQuery,
     useLazyTeamDetailsQuery,
+    useLazyRecordDetailsQuery,
     useGamesListQuery,
     useGameDetailsQuery,
     useSeatgeekTicketsQuery,
     useVividseatsTicketsQuery,
     useTickpickTicketsQuery,
     useDeleteUserMutation,
+    useRecordDetailsQuery,
 } = mlbApi
