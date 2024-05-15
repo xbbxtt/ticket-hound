@@ -20,10 +20,10 @@ export default function GameDetails() {
     const [awayTeam, setAwayTeam] = useState('')
     const [recordData, setRecordData] = useState({})
 
-    const [trigger, result] = mlbApi.useLazyRecordDetailsQuery(
-        {homeTeam,
-        awayTeam}
-    )
+    const [trigger, result] = mlbApi.useLazyRecordDetailsQuery({
+        homeTeam,
+        awayTeam,
+    })
 
     useEffect(() => {
         if (!gameData && !gameIsLoading) {
@@ -31,11 +31,20 @@ export default function GameDetails() {
         } else if (gameData && !gameIsLoading) {
             setHomeTeam(gameData.home_team)
             setAwayTeam(gameData.away_team)
-            trigger( {homeTeam, awayTeam} )
+            trigger({ homeTeam, awayTeam })
         }
-    }, [gameData, gameIsLoading, navigate, trigger, setHomeTeam, setAwayTeam, homeTeam, awayTeam])
+    }, [
+        gameData,
+        gameIsLoading,
+        navigate,
+        trigger,
+        setHomeTeam,
+        setAwayTeam,
+        homeTeam,
+        awayTeam,
+    ])
 
-    console.log("result", result.data)
+    console.log('result', result.data)
 
     useEffect(() => {
         if (result.isSuccess) setRecordData(result.data)
@@ -83,16 +92,22 @@ export default function GameDetails() {
                         </div>
                     </div>
                     <div className="col-3">
-                        <div className="card mb-1 row-3">
+                        <div className="card mb-1 row-3 russo-one-regular">
                             <div>
                                 <div>{gameData.location}</div>
                                 <div>{formattedTime}</div>
                                 <div>{date.toDateString()}</div>
                             </div>
                         </div>
-                        <div className="card mb-1 row-3">
+                        <div className="card mb-1 row-3 russo-one-regular">
+                            <div>{gameData.away_team}</div>
                             <div>{recordData.away_record}</div>
+                            <div>{recordData.away_standings}</div>
+                        </div>
+                        <div className="card mb-1 row-3 russo-one-regular">
+                            <div>{gameData.home_team}</div>
                             <div>{recordData.home_record}</div>
+                            <div>{recordData.home_standings}</div>
                         </div>
                     </div>
                 </div>
