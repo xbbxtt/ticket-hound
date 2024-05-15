@@ -20,10 +20,7 @@ export default function GameDetails() {
     const [awayTeam, setAwayTeam] = useState('')
     const [recordData, setRecordData] = useState({})
 
-    const [trigger, result] = mlbApi.useLazyRecordDetailsQuery({
-        homeTeam,
-        awayTeam,
-    })
+    const [trigger, result] = mlbApi.useLazyRecordDetailsQuery()
 
     useEffect(() => {
         if (!gameData && !gameIsLoading) {
@@ -31,7 +28,9 @@ export default function GameDetails() {
         } else if (gameData && !gameIsLoading) {
             setHomeTeam(gameData.home_team)
             setAwayTeam(gameData.away_team)
-            trigger({ homeTeam, awayTeam })
+            if (homeTeam && awayTeam) {
+                trigger({ homeTeam, awayTeam })
+            }
         }
     }, [
         gameData,
@@ -43,8 +42,6 @@ export default function GameDetails() {
         homeTeam,
         awayTeam,
     ])
-
-    console.log('result', result.data)
 
     useEffect(() => {
         if (result.isSuccess) setRecordData(result.data)
