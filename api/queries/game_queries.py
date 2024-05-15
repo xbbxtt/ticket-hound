@@ -1,6 +1,7 @@
 import requests
 from models.games import DetailOut, GameOut, Record
 from fastapi import HTTPException
+from datetime import datetime
 
 class GameQueries:
     """
@@ -16,15 +17,19 @@ class GameQueries:
 
             data = response.json()
             ballgames = []
+            current_date = datetime.now()
 
             if away_team is None and home_team is None:
                 for date in data["dates"]:
                     for game in date["games"]:
+                        if not self._valiDate(current_date, datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")):
+                            continue
                         id=game["gamePk"]
                         date_time = game["gameDate"]
                         home = game["teams"]["home"]["team"]["name"]
                         away = game["teams"]["away"]["team"]["name"]
                         location = game["venue"]["name"]
+
 
                         ballgames.append(
                             GameOut(
@@ -38,6 +43,8 @@ class GameQueries:
             elif away_team and home_team:
                 for date in data["dates"]:
                     for game in date["games"]:
+                        if not self._valiDate(current_date, datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")):
+                            continue
                         id=game["gamePk"]
                         date_time = game["gameDate"]
                         home = game["teams"]["home"]["team"]["name"]
@@ -55,6 +62,8 @@ class GameQueries:
             elif away_team or home_team:
                 for date in data["dates"]:
                     for game in date["games"]:
+                        if not self._valiDate(current_date, datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")):
+                            continue
                         id=game["gamePk"]
                         date_time = game["gameDate"]
                         home = game["teams"]["home"]["team"]["name"]
@@ -145,3 +154,8 @@ class GameQueries:
         except Exception as e:
             print(e)
             raise HTTPException(status_code=404, detail="Could not load record")
+        
+    def _valiDate(self, current_date, date):
+        if current_date > date:
+            return False
+        return True

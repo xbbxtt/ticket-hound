@@ -5,6 +5,8 @@ export default function InputBox({
     onChange,
     placeholder,
     title,
+    min = null,
+    max = null,
 }) {
     const options = {
         id: name,
@@ -14,10 +16,8 @@ export default function InputBox({
         onChange: onChange,
         placeholder: placeholder,
         title: title,
-    }
-    if (type === 'date' && name !== 'birthday') {
-        const date = new Date().toISOString().split('T')[0]
-        options['min'] = date
+        max: max,
+        min: min,
     }
     return (
         <div className="row">
