@@ -51,12 +51,12 @@ export const mlbApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        deleteUser: builder.mutation ({
-            query:() => ({
-                url: "/api/auth/user/delete",
-                method: "DELETE",
+        deleteUser: builder.mutation({
+            query: () => ({
+                url: '/api/auth/user/delete',
+                method: 'DELETE',
             }),
-            invalidatesTags: ["User"]
+            invalidatesTags: ['User'],
         }),
         teamDetails: builder.query({
             query: (id) => ({
@@ -90,8 +90,8 @@ export const mlbApi = createApi({
             }),
         }),
         recordDetails: builder.query({
-            query: (homeTeam, awayTeam) => ({
-                url: `/api/record?home_team=${homeTeam}&away_team=${awayTeam}`
+            query: ({ homeTeam, awayTeam }) => ({
+                url: `/api/record?home_team=${homeTeam}&away_team=${awayTeam}`,
             }),
         }),
         seatgeekTickets: builder.query({

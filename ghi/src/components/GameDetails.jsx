@@ -1,42 +1,46 @@
 import { mlbApi } from '../app/apiSlice'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import GetSeatgeekTickets from './GetSeatgeekTickets'
 import GetVividseatsTickets from './GetVividseatsTickets'
 import GetTickpickTickets from './GetTickpickTickets'
+import { useEffect, useState } from 'react'
 
-export default function GameDetails(
-) {
+export default function GameDetails() {
     // Using the game's id, this component will make
     // an API call to get the details for a specific game
     const location = useLocation()
     const id = location.state.id
 
+    const navigate = useNavigate()
+
     const { data: gameData, isLoading: gameIsLoading } =
         mlbApi.useGameDetailsQuery(id)
 
-    if (gameIsLoading) return <div>Loading...</div>
+    const [homeTeam, setHomeTeam] = useState('')
+    const [awayTeam, setAwayTeam] = useState('')
+    const [recordData, setRecordData] = useState({})
 
     const [trigger, result] = mlbApi.useLazyRecordDetailsQuery(
-        gameData
+        {homeTeam,
+        awayTeam}
     )
-    const [homeTeam, setHomeTeam] = useState()
-    const [awayTeam, setAwayTeam] = useState()
 
     useEffect(() => {
         if (!gameData && !gameIsLoading) {
             navigate('/')
         } else if (gameData && !gameIsLoading) {
-            trigger(gameData)
+            setHomeTeam(gameData.home_team)
+            setAwayTeam(gameData.away_team)
+            trigger( {homeTeam, awayTeam} )
         }
-    }, [gameData, gameIsLoading, navigate, trigger])
+    }, [gameData, gameIsLoading, navigate, trigger, setHomeTeam, setAwayTeam, homeTeam, awayTeam])
 
-    console.log(result)
+    console.log("result", result.data)
 
-    // useEffect(() => {
-    //     if (result.isSuccess) setHomeTeam(result.data)
-    // }, [result])
-
-    if (recordIsLoading) return <div>Loading...</div>
+    useEffect(() => {
+        if (result.isSuccess) setRecordData(result.data)
+    }, [result])
+    if (gameIsLoading) return <div>Loading...</div>
 
     const date = new Date(gameData.game_date)
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -85,6 +89,10 @@ export default function GameDetails(
                                 <div>{formattedTime}</div>
                                 <div>{date.toDateString()}</div>
                             </div>
+                        </div>
+                        <div className="card mb-1 row-3">
+                            <div>{recordData.away_record}</div>
+                            <div>{recordData.home_record}</div>
                         </div>
                     </div>
                 </div>
