@@ -133,6 +133,7 @@ export default function SignUpForm() {
                                 value={formData.birthday}
                                 onChange={handleFormChange}
                                 placeholder=""
+                                max={new Date().toISOString().split('T')[0]}
                             />
                         </div>
                         <label className="mb-2">
