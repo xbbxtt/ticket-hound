@@ -17,9 +17,7 @@ export default function InputBox({
         placeholder: placeholder,
         title: title,
         max: max,
-    }
-    if (type === 'date' && name !== 'birthday') {
-        options['min'] = date
+        min: min,
     }
     return (
         <div className="row">

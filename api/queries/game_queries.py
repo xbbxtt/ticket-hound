@@ -43,7 +43,7 @@ class GameQueries:
             elif away_team and home_team:
                 for date in data["dates"]:
                     for game in date["games"]:
-                        if not self._valiDate(current_date, datetime(game["gameDate"])):
+                        if not self._valiDate(current_date, datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")):
                             continue
                         id=game["gamePk"]
                         date_time = game["gameDate"]
@@ -62,7 +62,7 @@ class GameQueries:
             elif away_team or home_team:
                 for date in data["dates"]:
                     for game in date["games"]:
-                        if not self._valiDate(current_date, datetime(game["gameDate"])):
+                        if not self._valiDate(current_date, datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ")):
                             continue
                         id=game["gamePk"]
                         date_time = game["gameDate"]

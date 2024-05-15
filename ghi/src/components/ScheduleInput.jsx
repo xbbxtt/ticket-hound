@@ -11,6 +11,7 @@ export default function ScheduleInput({ formData, handleFormChangeFunction }) {
                 onChange={handleFormChangeFunction}
                 placeholder=""
                 title="Start Date:"
+                min={formData.start_date}
             />
             <InputBox
                 type="date"
@@ -19,6 +20,7 @@ export default function ScheduleInput({ formData, handleFormChangeFunction }) {
                 onChange={handleFormChangeFunction}
                 placeholder=""
                 title="End Date:"
+                min={formData.start_date}
             />
             <label htmlFor="away_team">Away Team:</label>
             <TeamDropDown
