@@ -121,6 +121,7 @@ export default function EditProfile() {
                             value={formData.birthday}
                             onChange={handleFormChange}
                             placeholder=""
+                            max={new Date().toISOString().split('T')[0]}
                         />
                     </div>
                     <label>
