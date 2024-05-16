@@ -22,22 +22,26 @@ export default function ScheduleInput({ formData, handleFormChangeFunction }) {
                 title="End Date:"
                 min={formData.start_date}
             />
-            <label>
-                Away Team:
-                <TeamDropDown
-                    name="away_team"
-                    value={formData.away_team}
-                    onChangeFunction={handleFormChangeFunction}
-                />
-            </label>
-            <label>
-                Home Team:
-                <TeamDropDown
-                    name="home_team"
-                    value={formData.home_team}
-                    onChangeFunction={handleFormChangeFunction}
-                />
-            </label>
+            <div className="mb-3 px-2">
+                <label>
+                    Away Team:
+                    <TeamDropDown
+                        name="away_team"
+                        value={formData.away_team}
+                        onChangeFunction={handleFormChangeFunction}
+                    />
+                </label>
+            </div>
+            <div className="mb-3">
+                <label>
+                    Home Team:
+                    <TeamDropDown
+                        name="home_team"
+                        value={formData.home_team}
+                        onChangeFunction={handleFormChangeFunction}
+                    />
+                </label>
+            </div>
         </div>
     )
 }
