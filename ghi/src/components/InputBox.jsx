@@ -25,7 +25,7 @@ export default function InputBox({
                 {title}
             </label>
             <div className="input-group mb-3">
-                <input className="form-control mb-2" {...options} />
+                <input className="form-control mb-2" {...options} required />
             </div>
         </div>
     )
