@@ -1,7 +1,7 @@
 # Module3 Project Gamma
 
 ## TicketHound
-
+-   Shiran Xiao
 -   Billy Berger-Bailey
 -   Nahom Zeleke
 -   Nathan Batten
@@ -108,12 +108,6 @@ File Diagram for TicketHound App
 
 [Gitlab issue page](https://gitlab.com/tickethounds/ticket-hound/-/issues/?sort=created_date&state=all&first_page_size=20)
 
-## Unit Testing
-
--   Billy Berger-Bailey : test_get_list_of_teams
--   Justin Cosby : test_get_team_details
--   Nahom Zeleke : test_get_list_games
--   Nathan Batten : test_get_details_of_games
 
 ## Stretch Goals
 
